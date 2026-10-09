@@ -15,7 +15,7 @@ continues separately.
 
 ## What works
 
-- A business-case overview: the management challenge, an East/West decision exhibit with
+- A separate, unnumbered end-to-end case sample: an East/West decision exhibit with
   direct links to opportunities and accounts, the proposed solution, design choices, a company
   pilot, and potential extensions. Four follow-up checks cover deal volume versus size, sales
   motion, snapshot won share, and account footprint. The case recommends against copying
@@ -51,8 +51,8 @@ continues separately.
   East-versus-West opportunity comparison, and product-issue prioritization. Each opens
   with a material answer after three seconds, scrolls through the source-checked breakdown,
   opens a filtered source list and a selected record or clause, then shows a bounded decision,
-  proposed owner, test, close-out measure, and limit. The full East/West case is also documented
-  on Overview.
+  proposed owner, test, close-out measure, and limit. The full East/West case has its own
+  page, linked from the Overview's management-question card.
   Expandable text findings accompany
   the videos. No model generated these videos.
 
@@ -80,8 +80,8 @@ four videos load. The site is static HTML, CSS and JavaScript; no login, backend
 is required. The export and video-generation scripts remain in the separate local build
 checkout, not this public deployment mirror.
 
-The revised overview was checked at 320, 390, 768, and 1280 CSS pixels. Its regional
-comparison fits without clipped figures or page overflow. Mobile record inspection,
+The regional comparison was checked at 320, 390, 768, and 1280 CSS pixels. It fits
+without clipped figures or page overflow. Mobile record inspection,
 technical disclosures and regional-video playback were also checked. The comparison
 uses its own compact sizing rather than the wider source explorer's table minimum.
 
