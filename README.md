@@ -15,7 +15,9 @@ continues separately.
 
 ## What works
 
-- A concise Overview architecture summary distinguishing the local model boundary, verified
+- A first-visit path that leads with a source-checked Vantara result and the four simulated
+  demos, then distinguishes locally built capabilities, public-preview behavior and future work.
+- An Overview architecture summary distinguishing the local model boundary, verified
   JSON/SQLite data layer, business semantics, bounded lexical RAG, governed tools, provenance,
   evaluation gates and the planned (not self-service) company-data onboarding path.
 - A separate end-state flow and proposed fine-tuning path. Tuning would use independently
@@ -25,9 +27,9 @@ continues separately.
   transcript index records. Source bodies and people/contact fields are excluded.
 - Two combinable dimension filters, an account filter where a recorded account ID exists,
   50-record pages, and inspection of the public fields behind each result.
-- A guided Vantara example: 783 linked tickets, 269 incident tickets and 45 incidents in
-  Checkout & Customer Experience. The 45-record link applies all three conditions and
-  exposes the records. This is an observation, not a causal claim.
+- A guided Vantara example: 783 linked tickets, 269 incident tickets and 58 incidents in
+  Revenue Analytics & Reporting, including 22 P1 cases. The 58-record link applies the
+  account, incident-type and product-area conditions. This is an observation, not a causal claim.
 - Four captioned, 24-second simulated analyst interactions (`demo-*.mp4`): support
   concentration, a nine-clause Growth-versus-Enterprise agreement comparison, an
   East-versus-West opportunity comparison, and product-issue prioritization. Each opens
@@ -54,7 +56,7 @@ counts are not claims of full company coverage, and recorded CRM ACV is not reve
 The export was checked against a fixed source commit and file-manifest hash. Focused offline
 contracts verified record counts, allowed fields, the guided finding, demo figures, media,
 and relative asset paths before publication. The public deployment was then checked in a
-browser: the Overview loads, account exploration and the 45-record drill-down work, and all
+browser: the Overview loads, account exploration and the 58-record drill-down work, and all
 four videos load. The site is static HTML, CSS and JavaScript; no login, backend or model call
 is required. The export and video-generation scripts remain in the separate local build
 checkout, not this public deployment mirror.
