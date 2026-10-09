@@ -42,9 +42,13 @@ continues separately.
   transcript index records. Source bodies and people/contact fields are excluded.
 - Up to three combinable dimension filters, an account filter where a recorded account ID exists,
   50-record pages, and inspection of the public fields behind each result.
-- A guided Vantara example: 783 linked tickets, 269 incident tickets and 58 incidents in
-  Revenue Analytics & Reporting, including 22 P1 cases. The 58-record link applies the
-  account, incident-type, and product-area conditions. This is an observation, not a causal claim.
+- A guided Vantara investigation: 783 linked tickets and 269 incidents. Revenue Analytics
+  has 58 incidents and 22 P1 cases; Invoicing has 53 and 21. It compares all product areas,
+  checks the historical P1 dates, opens two matching dashboard-slowness subjects and a
+  separate dashboard/API discrepancy, and links the 22- and 21-record priority sets.
+  A proposed support-lead handoff explains how to validate classification, decide whether
+  a fix is supported, and measure the outcome. No confirmed shared defect or completed
+  intervention is claimed.
 - Four captioned, 34-second, native-1440p simulated analyst interactions (`demo-*.mp4`): support
   concentration, a nine-clause Growth-versus-Enterprise agreement comparison, an
   East-versus-West opportunity comparison, and product-issue prioritization. Each opens
