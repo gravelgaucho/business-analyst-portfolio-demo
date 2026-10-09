@@ -1,6 +1,6 @@
 .nav-case{margin-top:17px;padding-top:19px;border-top:1px solid #d7dad5;border-radius:0;color:#737a78;font-size:12px;font-weight:600}
 .nav-case.active,.nav-case:hover{border-radius:12px;color:var(--ink)}
-@media(max-width:720px){.nav-case{margin-top:0;padding-top:9px;border-top:0;border-left:1px solid #d7dad5;padding-left:16px}}
+@media(max-width:720px){.rail nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}.rail nav .nav-item{width:100%}.nav-case{grid-column:1/-1;margin-top:4px;padding-top:12px;border-top:1px solid #d7dad5;border-left:0;padding-left:13px}}
 .vision-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .vision-step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-height:180px}
 .vision-step h3{font-size:18px;margin:13px 0 8px}
