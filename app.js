@@ -171,7 +171,7 @@ async function renderInvestigation(){
 
 function renderAbout(){
   app.replaceChildren(heading("ILLUSTRATED INVESTIGATIONS","Watch the questions become findings.","Four brief, source-checked simulations show the kind of business answer this project is designed to deliver. They use approved synthetic records; the public site does not run a live model."));
-  app.append(sectionHead("Four questions. Four material findings.","Each 24-second video answers first, then scrolls through the source-checked breakdown, next check and limit. These are illustrated simulations built from verified synthetic records—not recordings of live model runs."));
+  app.append(sectionHead("Four questions. Four material findings.","Each 18-second video answers first, shows a wider source-checked breakdown, then states the next check and limit. These are illustrated simulations built from verified synthetic records—not recordings of live model runs."));
   const demos=element("div",undefined,"demo-grid");
   const demoNotes={
     support:["Finding: 269 of 783 Vantara tickets are incidents (34.4%). Revenue Analytics has the largest incident slice: 58 of 269 (21.6%), including 22 P1 incidents.","All 269 incidents are marked solved. Review the 22 P1 records and their dates before inferring repeat patterns or service quality.","Sources: ticket index, Vantara account ID and component-to-product-area links."],
@@ -186,10 +186,12 @@ function renderAbout(){
     ["issues","04 · Product issue priorities","Historical high-priority volume is separated from the active queue."]
   ].forEach(([key,title,description])=>{
     const card=element("section",undefined,"demo-card");
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=14`;visual.setAttribute("aria-label",`${title}, 24-second simulated analyst interaction`);
-    const movie=element("source");movie.src=`./demo-${key}.mp4?v=14`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Use the interactive views above."));
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=17`;visual.setAttribute("aria-label",`${title}, 18-second simulated analyst interaction`);
+    const movie=element("source");movie.src=`./demo-${key}.mp4?v=17`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Read the finding and sources below."));
     const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));
-    card.append(visual,element("h3",title),element("p",description),transcript);demos.append(card);
+    const mediaStatus=element("p","If the video cannot load, open the written finding and sources below.","demo-media-status");
+    visual.addEventListener("error",()=>{mediaStatus.textContent="Video unavailable. The written finding and sources are open below.";transcript.open=true;});
+    card.append(visual,mediaStatus,element("h3",title),element("p",description),transcript);demos.append(card);
   });app.append(demos);
   app.append(sectionHead("What is built—and what is next","The local engine, the public preview and the intended product are distinct."));
   const split=element("div",undefined,"split");

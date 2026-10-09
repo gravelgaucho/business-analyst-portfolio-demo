@@ -6,4 +6,5 @@
 .demo-transcript{margin:12px 5px 2px;border-top:1px solid #e3e4df;padding-top:10px}
 .demo-transcript summary{cursor:pointer;color:#4551cf;font-size:13px;font-weight:700}
 .demo-transcript p{margin:10px 0 0;font-size:13px;line-height:1.5}
+.demo-card .demo-media-status{font-size:11px;color:#6e716f;margin:8px 5px 0}
 @media(max-width:850px){.demo-grid{grid-template-columns:1fr}}
