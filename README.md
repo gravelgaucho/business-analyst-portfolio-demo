@@ -16,9 +16,8 @@ continues separately.
 ## What works
 
 - A separate, unnumbered end-to-end case sample: an East/West decision exhibit with
-  direct links to opportunities and accounts, the proposed solution, design choices, a company
-  pilot, and potential extensions. Four follow-up checks cover deal volume versus size, sales
-  motion, snapshot won share, and account footprint. The case recommends against copying
+  direct links to opportunities and accounts. Four follow-up checks cover deal volume versus size,
+  sales motion, snapshot won share, and account footprint. The case recommends against copying
   East's playbook, then hands a proposed sales-operations owner a comparison request,
   a conditional pilot decision gate, and a measurement plan. The synthetic snapshot supports
   the stated figures: East has $43.715M more recorded won ACV and 14 indexed accounts versus
