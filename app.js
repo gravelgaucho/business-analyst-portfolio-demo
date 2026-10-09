@@ -50,7 +50,7 @@ function renderOverview() {
   const hero=element("section",undefined,"hero");
   const left=heading("MODEL-AGNOSTIC · LOCAL-FIRST","A business analyst you can inspect.","A Mac-first business analyst engine prototype: a model interprets the question, approved retrieval and analytical tools check the evidence, and the answer cites its sources. This public site is a static synthetic-data preview—not a live analyst session.");
   const actions=element("div",undefined,"actions");
-  actions.append(button("Explore the data",()=>navigate("explore"),"btn primary"),button("See a guided finding",()=>navigate("investigation")),button("Watch four short demos",()=>{navigate("about");requestAnimationFrame(()=>{const video=document.querySelector(".tour-video");video?.scrollIntoView({behavior:"smooth",block:"center"});video?.play().catch(()=>{});});}));
+  actions.append(button("Explore the data",()=>navigate("explore"),"btn primary"),button("See a guided finding",()=>navigate("investigation")),button("Watch four analyst demos",()=>{navigate("about");requestAnimationFrame(()=>{const video=document.querySelector(".tour-video");video?.scrollIntoView({behavior:"smooth",block:"center"});video?.play().catch(()=>{});});}));
   left.append(actions);
   const aside=element("aside",undefined,"hero-aside");
   aside.append(element("div","WHAT'S REAL TODAY","eyebrow"),element("strong","Explore. Trace. Review."),element("p","The dashboard reads a pinned synthetic snapshot. Search, filters and account links work; the guided finding is precomputed. Bounded local analysis exists, but open-ended model answering is paused pending broader qualification."));
@@ -174,20 +174,27 @@ function renderAbout(){
   app.append(sectionHead("The architecture in plain language","The model handles language; deterministic tools handle numbers; provenance keeps both accountable."));
   const stages=element("div",undefined,"timeline");
   [["01","Connect approved sources","Each company implementation needs a scoped data setup, permissions, metadata and source checks."],["02","Investigate a question","The analyst plans, selects approved tools and sources, tests hypotheses and keeps scope visible."],["03","Produce a reviewable brief","Facts, findings, uncertainty, implications, recommendations, calculations and citations remain distinguishable."],["04","Let people verify","A business user can move from a high-level conclusion into records and methods, or explore the dashboard independently."]].forEach(([n,title,copy])=>{const card=panel(title,copy);card.prepend(element("span",n,"number"));stages.append(card);});app.append(stages);
-  app.append(sectionHead("Four questions. Four short demos.","Each 12-second video shows a different analytical behavior: source exploration, document comparison, premise testing, and an honest data-gap answer. These are illustrated simulations—not recordings of live model runs."));
+  app.append(sectionHead("Four questions. Four material findings.","Each 28-second video follows a question through source checks to a quantified or qualified conclusion, next check and limit. These are illustrated simulations built from verified synthetic records—not recordings of live model runs."));
   const demos=element("div",undefined,"demo-grid");
+  const demoNotes={
+    support:["Finding: 269 of 783 Vantara tickets are incidents (34.4%); 45 of those 269 (16.7%) map to Checkout & Customer Experience.","Next: inspect the 45 records and compare dates and linked product issues. The counts alone do not establish a trend or cause.","Sources: ticket index, Vantara account ID and component-to-product-area links."],
+    contracts:["Finding: Enterprise vs Growth monthly uptime is 99.95% vs 99.5%; P0 first-response target is 10 vs 30 minutes.","Billing-dispute resolution is 7 vs 15 business days; planned-maintenance notice is 168 vs 48 hours. These are synthetic tier templates, not executed customer terms.","Sources: MSA-003 and MSA-004, sections 2.1, 3.2, 4.1 and 11.1."],
+    regions:["Finding: East has 1,923 won records of 2,907 (66.2%); West has 1,558 of 2,330 (66.9%). East has 365 more won records, but West's marked-won share is 0.7 percentage points higher.","Next: compare same-period pipeline value and deal mix. These status counts do not prove conversion, revenue or cause.","Source: all East and West records in the synthetic opportunity index."],
+    issues:["Finding: Checkout & Customer Experience has 258 high/highest-priority issues of 1,489 (17.3%), the highest count by product area. Revenue Analytics & Reporting has 248 of 1,469 (16.9%).","The count lead is 10 issues; the share gap is about 0.4 percentage points. Review severity, age and customer impact before prioritizing. Product-area tags can overlap.","Sources: product-issue index and component-to-product-area links."]
+  };
   [
     ["support","01 · Support concentration","A broad support question becomes a counted, source-linked finding."],
-    ["contracts","02 · Agreement comparison","Two synthetic tier templates, two matched terms, exact differences."],
-    ["regions","03 · Regional performance","A claim of outperformance gets checked against both counts and shares."],
-    ["margin","04 · Margin investigation","The analyst identifies missing financial inputs instead of inventing a cause."]
+    ["contracts","02 · Agreement comparison","Four matched T&C clauses reveal differences that matter operationally."],
+    ["regions","03 · Regional performance","A claim of outperformance gets checked against counts and denominators."],
+    ["issues","04 · Product issue priorities","A product-area ranking is quantified, then bounded before action."]
   ].forEach(([key,title,description])=>{
     const card=element("section",undefined,"demo-card");
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png`;visual.setAttribute("aria-label",`${title}, 12-second simulated analyst interaction`);
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png`;visual.setAttribute("aria-label",`${title}, 28-second simulated analyst interaction`);
     const movie=element("source");movie.src=`./demo-${key}.mp4`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Use the interactive views above."));
-    card.append(visual,element("h3",title),element("p",description));demos.append(card);
+    const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));
+    card.append(visual,element("h3",title),element("p",description),transcript);demos.append(card);
   });app.append(demos);
-  const guide=panel("What you can verify here","The first three demos use facts checked against the approved synthetic snapshot. The contract video publishes only two extracted terms per tier, not document bodies. The margin video shows a missing-input boundary. In the working dashboard, you can explore seven source indexes and open the precomputed Vantara finding; no live model request runs here.");guide.append(button("Start exploring",()=>navigate("overview"),"btn primary"));app.append(guide);
+  const guide=panel("What you can verify here","All four demos use facts checked against the approved synthetic snapshot. The contract video publishes four extracted terms per tier, not document bodies. In the working dashboard, you can explore seven source indexes and open the precomputed Vantara finding; no live model request runs here. The margin question remains out of scope because this public projection lacks matched revenue and direct costs.");guide.append(button("Start exploring",()=>navigate("overview"),"btn primary"));app.append(guide);
   app.append(element("p",`Data source: DevRev Enterprise-Bench / Maple Payments, commit ${summary.source_commit}. Public indexes are generated from a checksum-verified synthetic snapshot. The benchmark's hidden tasks, judging, generated finance scenarios and saved model attempts are not distributed.`,"note"));
 }
 

@@ -3,4 +3,7 @@
 .demo-card h3{margin:17px 5px 5px}
 .demo-card p{font-size:13px;margin:0 5px 8px}
 .tour-video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;background:#222733}
+.demo-transcript{margin:12px 5px 2px;border-top:1px solid #e3e4df;padding-top:10px}
+.demo-transcript summary{cursor:pointer;color:#4551cf;font-size:13px;font-weight:700}
+.demo-transcript p{margin:10px 0 0;font-size:13px;line-height:1.5}
 @media(max-width:850px){.demo-grid{grid-template-columns:1fr}}
