@@ -48,7 +48,7 @@ function navigate(view) {
 function renderOverview() {
   app.replaceChildren();
   const hero=element("section",undefined,"hero");
-  const left=heading("MODEL-AGNOSTIC · LOCAL-FIRST","Ask a business question. Follow the evidence.","This Mac-first analyst engine is built to interpret business questions, use approved data and analytical tools, and cite the records behind its findings. Explore the synthetic sample here and watch illustrated investigations; this public site does not run live model queries.");
+  const left=heading("MODEL-AGNOSTIC · LOCAL-FIRST","Ask a business question. Follow the evidence.","This Mac-first AI business analyst prototype is built to interpret questions, use approved data and analytical tools, and cite the records behind its findings. Explore the synthetic sample here and watch illustrated investigations; this public site does not run live model queries.");
   const actions=element("div",undefined,"actions");
   actions.append(button("Watch the analyst demos",()=>{navigate("about");requestAnimationFrame(()=>{const video=document.querySelector(".tour-video");video?.scrollIntoView({behavior:"smooth",block:"center"});video?.play().catch(()=>{});});},"btn primary"),button("Explore the data",()=>navigate("explore")));
   left.append(actions);
