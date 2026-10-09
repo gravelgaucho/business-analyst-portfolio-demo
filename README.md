@@ -28,12 +28,12 @@ continues separately.
 - A guided Vantara example: 783 linked tickets, 269 incident tickets and 45 incidents in
   Checkout & Customer Experience. The 45-record link applies all three conditions and
   exposes the records. This is an observation, not a causal claim.
-- Four captioned, 28-second simulated analyst interactions (`demo-*.mp4`): support
-  concentration, a four-clause Growth-versus-Enterprise agreement comparison, an
-  East-versus-West opportunity comparison, and product-issue prioritization. All four
-  use facts verified against the synthetic source; each presents material numbers,
-  an interpretation, a next check, and a limit. Expandable text findings accompany the
-  videos. No model generated these videos.
+- Four captioned, 24-second simulated analyst interactions (`demo-*.mp4`): support
+  concentration, a nine-clause Growth-versus-Enterprise agreement comparison, an
+  East-versus-West opportunity comparison, and product-issue prioritization. Each opens
+  with a material answer after four seconds, scrolls through the source-checked breakdown,
+  then states an implication, next check, and limit. Expandable text findings accompany
+  the videos. No model generated these videos.
 
 ## Data boundaries
 
@@ -45,7 +45,7 @@ synthetic and Apache-2.0; the license copy is `THIRD_PARTY_LICENSE.txt`.
 
 No generated finance world, benchmark answer key, review database, model trace, local
 credential, document body, description, contact detail or email is included. The separate
-`data/contract_demo_terms.json` publishes only four source-verified SLA/operations terms per synthetic tier
+`data/contract_demo_terms.json` publishes only nine source-verified SLA/operations terms per synthetic tier
 template; it is not an executed-customer-contract comparison. Source
 counts are not claims of full company coverage, and recorded CRM ACV is not revenue.
 
