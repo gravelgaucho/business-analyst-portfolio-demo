@@ -15,13 +15,18 @@ continues separately.
 
 ## What works
 
-- A first-visit path that leads with a source-checked Vantara result and the four simulated
-  demos, then distinguishes locally built capabilities, public-preview behavior and future work.
+- An Overview that explains the business need for control over data, definitions and evidence;
+  shows Julio Campos's work across applied AI, data engineering and product design; and retains
+  the verified Vantara finding, source exploration and four simulated demos.
 - An Overview architecture summary distinguishing the local model boundary, verified
   JSON/SQLite data layer, business semantics, bounded lexical RAG, governed tools, provenance,
   evaluation gates and the planned (not self-service) company-data onboarding path.
 - A separate end-state flow and proposed fine-tuning path. Tuning would use independently
   permitted examples, not Enterprise-Bench; no tuned model or live public inference is claimed.
+- A portability and implementation roadmap distinguishes the Mac/MLX runtime from reusable
+  application contracts, then explains model qualification, company-specific semantic setup,
+  second-company transfer and production controls. Other hosts and corporate functions remain
+  potential extensions requiring validation.
 - Seven searchable source indexes covering all 42 accounts, 8,704 opportunities, 32,768
   tickets, 8,448 product issues, 55 articles, eight document index records and three
   transcript index records. Source bodies and people/contact fields are excluded.
