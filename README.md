@@ -17,8 +17,10 @@ continues separately.
 
 - A business-case overview: the management challenge, an East/West decision exhibit with
   direct links to each region's records, the proposed solution, design choices, a company pilot,
-  and potential extensions. The exhibit reports $217.590M versus $173.875M in recorded won ACV
-  and explains why those totals alone do not establish better sales execution.
+  and potential extensions. The exhibit gives a concrete recommendation, three follow-up
+  questions, a volume-versus-deal-size calculation, sales-motion split, and a conditional
+  management action. The underlying snapshot supports each numerical finding; proposed
+  territory and cohort checks remain explicitly untested.
 - A proposed pilot scorecard covers time to a reviewed answer, answer quality, evidence coverage,
   and implementation effort. These are evaluation criteria, not measured benefits or ROI claims.
 - An Overview that explains the business need for control over data, definitions and evidence;
@@ -36,7 +38,7 @@ continues separately.
 - Seven searchable source indexes covering all 42 accounts, 8,704 opportunities, 32,768
   tickets, 8,448 product issues, 55 articles, eight document index records and three
   transcript index records. Source bodies and people/contact fields are excluded.
-- Two combinable dimension filters, an account filter where a recorded account ID exists,
+- Up to three combinable dimension filters, an account filter where a recorded account ID exists,
   50-record pages, and inspection of the public fields behind each result.
 - A guided Vantara example: 783 linked tickets, 269 incident tickets and 58 incidents in
   Revenue Analytics & Reporting, including 22 P1 cases. The 58-record link applies the

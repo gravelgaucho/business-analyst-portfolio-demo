@@ -57,6 +57,14 @@
 .case-table-wrap td{font-size:15px;font-weight:600;white-space:nowrap}
 .case-reading{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .case-reading p{margin:12px 0 0;font-size:14px;line-height:1.65}
+.case-audit{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.case-audit summary{cursor:pointer;color:var(--blue);font-weight:700}
+.case-audit .actions{margin-top:15px}
+.case-subhead{font-size:24px;margin:28px 0 20px}
+.case-decision{margin-top:26px;padding:24px 26px;border-radius:14px;background:var(--dark);color:#fff}
+.case-decision .architecture-label{color:var(--lime)}
+.case-decision h3{font-size:23px;line-height:1.25;margin:12px 0}
+.case-decision p{color:#d1d5dc;line-height:1.65;margin:0}
 .business-case .note{margin:22px 0 0}
 .pilot-measures{margin-top:22px;padding:26px;background:var(--blue-soft);border-radius:var(--radius)}
 .pilot-measures h3{font-size:24px;margin:14px 0 20px}
@@ -68,5 +76,5 @@
 @media(max-width:900px){.portability-grid,.technical-body{grid-template-columns:1fr}.story-row{grid-template-columns:30px 1fr}.story-row p{grid-column:2}.story-row h3{max-width:none}}
 @media(max-width:720px){.architecture-grid,.vision-flow,.onboarding-note,.implementation-steps{grid-template-columns:1fr}.architecture-card,.vision-step{min-height:0}.contribution-band{padding:25px}.story-row{gap:10px 14px}.story-row h3{font-size:21px}}
 @media(max-width:900px){.case-reading{grid-template-columns:1fr;gap:20px}}
-@media(max-width:720px){.business-case{padding:22px 18px}.pilot-measures dl{grid-template-columns:1fr}.pilot-measures{padding:23px}}
+@media(max-width:720px){.business-case{padding:22px 18px}.case-decision{padding:21px 19px}.pilot-measures dl{grid-template-columns:1fr}.pilot-measures{padding:23px}}
 @media(max-width:380px){.case-table-wrap td{font-size:11px;padding-left:3px;padding-right:3px}}
