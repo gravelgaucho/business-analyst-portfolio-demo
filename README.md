@@ -1,4 +1,4 @@
-# Business Analyst — public portfolio preview
+# Business Analyst | Public portfolio preview
 
 **Live demo:** https://gravelgaucho.github.io/business-analyst-portfolio-demo/
 
@@ -72,6 +72,11 @@ browser: the Overview loads, account exploration and the 58-record drill-down wo
 four videos load. The site is static HTML, CSS and JavaScript; no login, backend or model call
 is required. The export and video-generation scripts remain in the separate local build
 checkout, not this public deployment mirror.
+
+The revised overview was checked at 320, 390, 768 and 1280 CSS pixels. Its regional
+comparison fits without clipped figures or page overflow. Mobile record inspection,
+technical disclosures and regional-video playback were also checked. The comparison
+uses its own compact sizing rather than the wider source explorer's table minimum.
 
 ## Status
 

@@ -48,7 +48,7 @@ function navigate(view) {
 function renderOverview() {
   app.replaceChildren();
   const hero=element("section",undefined,"hero");
-  const left=heading("MODEL-AGNOSTIC · LOCAL-FIRST","Ask a business question. Follow the evidence.","Business decisions depend on information spread across systems. This analyst engine is designed to bring the question, the analysis and the supporting evidence into one workspace—with control over your data and a model you can replace.");
+  const left=heading("MODEL-AGNOSTIC · LOCAL-FIRST","Ask a business question. Follow the evidence.","Business decisions depend on information spread across systems. This analyst engine is designed to bring the question, the analysis and the supporting evidence into one workspace, with control over your data and a model you can replace.");
   left.append(element("p","Built by Julio Campos · Applied AI engineering, business analysis and product design.","maker-line"));
   const actions=element("div",undefined,"actions");
   actions.append(button("Watch the analyst demos",()=>{navigate("about");requestAnimationFrame(()=>{const video=document.querySelector(".tour-video");video?.scrollIntoView({behavior:"smooth",block:"center"});video?.play().catch(()=>{});});},"btn primary"),button("Explore the data",()=>navigate("explore")));
@@ -90,13 +90,13 @@ function renderOverview() {
     ["03 / INVESTIGATE","Use the right tools","Retrieve passages, run validated SQL/Python calculations, reconcile sources and test competing explanations."],
     ["04 / EXPLAIN","Return a decision-ready brief","Quantify the change, explain what supports it, identify uncertainty and recommend next checks. Let the user inspect the what, why and how."]
   ].forEach(([label,title,copy])=>{const card=element("div",undefined,"vision-step");card.append(element("span",label,"architecture-label"),element("h3",title),element("p",copy));vision.append(card);});app.append(vision);
-  app.append(sectionHead("Explore without asking the AI","The same workspace should support both paths: investigate through conversation or browse the business yourself. Try the public source indexes below—search, filter, open a record and follow its identity."));
+  app.append(sectionHead("Explore without asking the AI","The same workspace should support both paths: investigate through conversation or browse the business yourself. Try the public source indexes below: search, filter, open a record and follow its identity."));
   const metrics=element("div",undefined,"metric-grid");
   [["accounts","Accounts"],["opportunities","Opportunities"],["tickets","Support tickets"],["issues","Product issues"]].forEach(([key,label])=>{const card=element("div",undefined,"metric-card");card.append(element("span",label),element("strong",number(summary.totals[key])),element("small","Verified synthetic source index"));metrics.append(card);});app.append(metrics);
   const categories=element("div",undefined,"category-grid overview-collections");
   Object.entries(categoryInfo).forEach(([key,info])=>{const card=button("",()=>{explore={category:key,query:"",facet:"",value:"",account:"",page:0};navigate("explore");},"category-card");card.append(element("span",number(summary.totals[key]),"count"),element("span",info.label,"label"),element("span","Open collection ↗","arrow"));categories.append(card);});app.append(categories);
   app.append(element("p","This public snapshot omits document bodies, contact details, saved model runs and the separate finance test data. Source coverage is broader than the analyst’s qualified analytical capabilities.","note"));
-  const supportProof=panel("Follow another finding","58 of 269 Vantara incidents map to Revenue Analytics, including 22 P1 cases. Inspect the linked records and see what the finding supports—and what remains unknown.");supportProof.append(button("Inspect the support finding ↗",()=>navigate("investigation")));app.append(supportProof);
+  const supportProof=panel("Follow another finding","58 of 269 Vantara incidents map to Revenue Analytics, including 22 P1 cases. Inspect the linked records and see what the finding supports and what remains unknown.");supportProof.append(button("Inspect the support finding ↗",()=>navigate("investigation")));app.append(supportProof);
   app.append(contribution);
   const choices=element("div",undefined,"story-rows");
   [["01","Control where analysis happens","Sensitive sales pipelines, customer histories and commercial terms may need to stay inside a company’s environment. Local inference gives a deployment choice; production identity and access controls still require implementation."],["02","Keep the intelligence replaceable","Models improve faster than business definitions change. Separate the model adapter from analytical tools and evidence contracts so a new candidate can be tested against the same work. Portability still has to be demonstrated."],["03","Make useful answers testable","A fluent answer is only part of the result. Check the figures, scope, requested parts and source references; retain attempts so failures can be traced to data, tools, orchestration or the model."]].forEach(([num,title,copy])=>{const row=element("section",undefined,"story-row");row.append(element("span",num,"story-number"),element("h3",title),element("p",copy));choices.append(row);});app.append(choices);
@@ -219,7 +219,7 @@ async function renderInvestigation(){
 
 function renderAbout(){
   app.replaceChildren(heading("ILLUSTRATED INVESTIGATIONS","Watch the questions become findings.","Four brief, source-checked simulations show the kind of business answer this project is designed to deliver. They use approved synthetic records; the public site does not run a live model."));
-  app.append(sectionHead("Four questions. Four material findings.","Each 25-second video moves from the answer to its full breakdown, then into a filtered source list and an individual record or clause. The final frame separates implication from what remains unproven. These are illustrated simulations—not live model runs."));
+  app.append(sectionHead("Four questions. Four material findings.","Each 25-second video moves from the answer to its full breakdown, then into a filtered source list and an individual record or clause. The final frame separates implication from what remains unproven. These are illustrated simulations, not live model runs."));
   const demos=element("div",undefined,"demo-grid");
   const demoNotes={
     support:["Finding: 269 of 783 Vantara tickets are incidents (34.4%). Revenue Analytics has the largest incident slice: 58 of 269 (21.6%), including 22 P1 incidents.","Drill-down: the video filters those 22 linked P1 records and opens TKT-22426 as one inspectable example; one record does not establish a cause or trend.","All 269 incidents are marked solved. Review the P1 records and dates before inferring repeat patterns or service quality.","Sources: ticket index, Vantara account ID and component-to-product-area links."],
@@ -241,7 +241,7 @@ function renderAbout(){
     visual.addEventListener("error",()=>{mediaStatus.textContent="Video unavailable. The written finding and sources are open below.";mediaStatus.classList.add("show");transcript.open=true;});
     card.append(visual,mediaStatus,element("h3",title),element("p",description),transcript);demos.append(card);
   });app.append(demos);
-  app.append(sectionHead("What is built—and what is next","The local engine, the public preview and the intended product are distinct."));
+  app.append(sectionHead("What is built and what is next","The local engine, the public preview and the intended product are distinct."));
   const split=element("div",undefined,"split");
   const what=panel("Built and inspectable","The local prototype has a model-swappable boundary, bounded analytical tools, source provenance and evaluation checks. This public preview lets visitors explore seven synthetic indexes and drill into one precomputed finding.");
   const later=panel("Not yet qualified","Open-ended enterprise-grade reasoning, live public asking, production security, cross-source causal analysis and live-company connections remain future work. The videos illustrate answers; they are not model-run recordings.");split.append(what,later);app.append(split);
