@@ -55,8 +55,11 @@
 .case-table-wrap th:first-child{text-align:left;width:52%}
 .case-table-wrap tbody th{font-size:13px;letter-spacing:0;text-transform:none;background:#fff;color:var(--ink)}
 .case-table-wrap td{font-size:15px;font-weight:600;white-space:nowrap}
-.case-reading{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.case-reading{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .case-reading p{margin:12px 0 0;font-size:14px;line-height:1.65}
+.case-action-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.case-action-path section{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--canvas)}
+.case-action-path p{margin:12px 0 0;font-size:14px;line-height:1.65}
 .case-audit{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
 .case-audit summary{cursor:pointer;color:var(--blue);font-weight:700}
 .case-audit .actions{margin-top:15px}
@@ -75,6 +78,6 @@
 @media(max-width:1050px){.architecture-grid,.vision-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.case-table-wrap th,.case-table-wrap td{padding:12px 6px}.case-table-wrap th:first-child{width:40%}.case-table-wrap td{font-size:12px}}
 @media(max-width:900px){.portability-grid,.technical-body{grid-template-columns:1fr}.story-row{grid-template-columns:30px 1fr}.story-row p{grid-column:2}.story-row h3{max-width:none}}
 @media(max-width:720px){.architecture-grid,.vision-flow,.onboarding-note,.implementation-steps{grid-template-columns:1fr}.architecture-card,.vision-step{min-height:0}.contribution-band{padding:25px}.story-row{gap:10px 14px}.story-row h3{font-size:21px}}
-@media(max-width:900px){.case-reading{grid-template-columns:1fr;gap:20px}}
+@media(max-width:900px){.case-reading,.case-action-path{grid-template-columns:1fr;gap:20px}}
 @media(max-width:720px){.business-case{padding:22px 18px}.case-decision{padding:21px 19px}.pilot-measures dl{grid-template-columns:1fr}.pilot-measures{padding:23px}}
 @media(max-width:380px){.case-table-wrap td{font-size:11px;padding-left:3px;padding-right:3px}}

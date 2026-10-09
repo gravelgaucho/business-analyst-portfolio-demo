@@ -16,19 +16,22 @@ continues separately.
 ## What works
 
 - A business-case overview: the management challenge, an East/West decision exhibit with
-  direct links to each region's records, the proposed solution, design choices, a company pilot,
-  and potential extensions. The exhibit gives a concrete recommendation, three follow-up
-  questions, a volume-versus-deal-size calculation, sales-motion split, and a conditional
-  management action. The underlying snapshot supports each numerical finding; proposed
-  territory and cohort checks remain explicitly untested.
+  direct links to opportunities and accounts, the proposed solution, design choices, a company
+  pilot, and potential extensions. Four follow-up checks cover deal volume versus size, sales
+  motion, snapshot won share, and account footprint. The case recommends against copying
+  East's playbook, then hands a proposed sales-operations owner a comparison request,
+  a conditional pilot decision gate, and a measurement plan. The synthetic snapshot supports
+  the stated figures: East has $43.715M more recorded won ACV and 14 indexed accounts versus
+  West's 11, while West has 1.7% more won ACV per indexed account. It does not support a
+  causal diagnosis or a completed business pilot.
 - A proposed pilot scorecard covers time to a reviewed answer, answer quality, evidence coverage,
   and implementation effort. These are evaluation criteria, not measured benefits or ROI claims.
-- An Overview that explains the business need for control over data, definitions and evidence;
-  shows Julio Campos's work across applied AI, data engineering and product design; and retains
-  the verified Vantara finding, source exploration and four simulated demos.
+- An Overview that explains the business need for control over data, definitions, and evidence;
+  shows Julio Campos's work across applied AI, data engineering, and product design; and retains
+  the verified Vantara finding, source exploration, and four simulated demos.
 - An Overview architecture summary distinguishing the local model boundary, verified
   JSON/SQLite data layer, business semantics, bounded lexical RAG, governed tools, provenance,
-  evaluation gates and the planned (not self-service) company-data onboarding path.
+  evaluation gates, and the planned (not self-service) company-data onboarding path.
 - A separate end-state flow and proposed fine-tuning path. Tuning would use independently
   permitted examples, not Enterprise-Bench; no tuned model or live public inference is claimed.
 - A portability and implementation roadmap distinguishes the Mac/MLX runtime from reusable
@@ -36,19 +39,20 @@ continues separately.
   second-company transfer and production controls. Other hosts and corporate functions remain
   potential extensions requiring validation.
 - Seven searchable source indexes covering all 42 accounts, 8,704 opportunities, 32,768
-  tickets, 8,448 product issues, 55 articles, eight document index records and three
+  tickets, 8,448 product issues, 55 articles, eight document index records, and three
   transcript index records. Source bodies and people/contact fields are excluded.
 - Up to three combinable dimension filters, an account filter where a recorded account ID exists,
   50-record pages, and inspection of the public fields behind each result.
 - A guided Vantara example: 783 linked tickets, 269 incident tickets and 58 incidents in
   Revenue Analytics & Reporting, including 22 P1 cases. The 58-record link applies the
-  account, incident-type and product-area conditions. This is an observation, not a causal claim.
+  account, incident-type, and product-area conditions. This is an observation, not a causal claim.
 - Four captioned, 25-second, native-1440p simulated analyst interactions (`demo-*.mp4`): support
   concentration, a nine-clause Growth-versus-Enterprise agreement comparison, an
   East-versus-West opportunity comparison, and product-issue prioritization. Each opens
   with a material answer after three seconds, scrolls through the source-checked breakdown,
   opens a filtered source list and a selected record or clause, then states an implication,
-  next check, and limit. Expandable text findings accompany
+  next check, and limit. The full East/West case extends beyond its 25-second video excerpt.
+  Expandable text findings accompany
   the videos. No model generated these videos.
 
 ## Data boundaries
@@ -75,7 +79,7 @@ four videos load. The site is static HTML, CSS and JavaScript; no login, backend
 is required. The export and video-generation scripts remain in the separate local build
 checkout, not this public deployment mirror.
 
-The revised overview was checked at 320, 390, 768 and 1280 CSS pixels. Its regional
+The revised overview was checked at 320, 390, 768, and 1280 CSS pixels. Its regional
 comparison fits without clipped figures or page overflow. Mobile record inspection,
 technical disclosures and regional-video playback were also checked. The comparison
 uses its own compact sizing rather than the wider source explorer's table minimum.
