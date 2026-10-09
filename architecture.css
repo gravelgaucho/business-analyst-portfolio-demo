@@ -81,3 +81,4 @@
 @media(max-width:900px){.case-reading,.case-action-path{grid-template-columns:1fr;gap:20px}}
 @media(max-width:720px){.business-case{padding:22px 18px}.case-decision{padding:21px 19px}.pilot-measures dl{grid-template-columns:1fr}.pilot-measures{padding:23px}}
 @media(max-width:380px){.case-table-wrap td{font-size:11px;padding-left:3px;padding-right:3px}}
+@media(max-width:380px){.timeline .panel{display:block}.timeline .number{display:inline-block;margin-bottom:8px}}
