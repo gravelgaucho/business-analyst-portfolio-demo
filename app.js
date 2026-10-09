@@ -26,7 +26,7 @@ const sourceHref = "https://github.com/devrev/enterprise-bench/tree/";
 
 async function records(category) {
   if(!cache.has(category)) {
-    const response=await fetch(`/data/${category}.json`);
+    const response=await fetch(`./data/${category}.json`);
     if(!response.ok) throw new Error("The verified preview could not be loaded.");
     const rows=await response.json();
     if(rows.length!==summary.totals[category]) throw new Error("Preview record count does not match its manifest.");
@@ -183,8 +183,8 @@ function renderAbout(){
     ["margin","04 · Margin investigation","The analyst identifies missing financial inputs instead of inventing a cause."]
   ].forEach(([key,title,description])=>{
     const card=element("section",undefined,"demo-card");
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`/demo-${key}.png`;visual.setAttribute("aria-label",`${title}, 12-second simulated analyst interaction`);
-    const movie=element("source");movie.src=`/demo-${key}.mp4`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Use the interactive views above."));
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png`;visual.setAttribute("aria-label",`${title}, 12-second simulated analyst interaction`);
+    const movie=element("source");movie.src=`./demo-${key}.mp4`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Use the interactive views above."));
     card.append(visual,element("h3",title),element("p",description));demos.append(card);
   });app.append(demos);
   const guide=panel("What you can verify here","The first three demos use facts checked against the approved synthetic snapshot. The contract video publishes only two extracted terms per tier, not document bodies. The margin video shows a missing-input boundary. In the working dashboard, you can explore seven source indexes and open the precomputed Vantara finding; no live model request runs here.");guide.append(button("Start exploring",()=>navigate("overview"),"btn primary"));app.append(guide);
@@ -195,4 +195,4 @@ document.querySelectorAll(".nav-item").forEach(item=>item.addEventListener("clic
 window.addEventListener("hashchange",()=>{const view=location.hash.slice(1);if(["overview","explore","investigation","about"].includes(view)&&view!==currentView)navigate(view);});
 document.querySelector("#dialog-close").addEventListener("click",()=>dialog.close());
 dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-fetch("/data/summary.json").then(response=>{if(!response.ok)throw Error("Snapshot unavailable");return response.json();}).then(value=>{summary=value;const view=location.hash.slice(1);navigate(["overview","explore","investigation","about"].includes(view)?view:"overview");}).catch(error=>app.replaceChildren(element("p",error.message+". Please reload the preview.","loading")));
+fetch("./data/summary.json").then(response=>{if(!response.ok)throw Error("Snapshot unavailable");return response.json();}).then(value=>{summary=value;const view=location.hash.slice(1);navigate(["overview","explore","investigation","about"].includes(view)?view:"overview");}).catch(error=>app.replaceChildren(element("p",error.message+". Please reload the preview.","loading")));
