@@ -15,6 +15,12 @@ continues separately.
 
 ## What works
 
+- A business-case overview: the management challenge, an East/West decision exhibit with
+  direct links to each region's records, the proposed solution, design choices, a company pilot,
+  and potential extensions. The exhibit reports $217.590M versus $173.875M in recorded won ACV
+  and explains why those totals alone do not establish better sales execution.
+- A proposed pilot scorecard covers time to a reviewed answer, answer quality, evidence coverage,
+  and implementation effort. These are evaluation criteria, not measured benefits or ROI claims.
 - An Overview that explains the business need for control over data, definitions and evidence;
   shows Julio Campos's work across applied AI, data engineering and product design; and retains
   the verified Vantara finding, source exploration and four simulated demos.
