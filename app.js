@@ -190,7 +190,7 @@ function renderAbout(){
     const movie=element("source");movie.src=`./demo-${key}.mp4?v=17`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Read the finding and sources below."));
     const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));
     const mediaStatus=element("p","If the video cannot load, open the written finding and sources below.","demo-media-status");
-    visual.addEventListener("error",()=>{mediaStatus.textContent="Video unavailable. The written finding and sources are open below.";transcript.open=true;});
+    visual.addEventListener("error",()=>{mediaStatus.textContent="Video unavailable. The written finding and sources are open below.";mediaStatus.classList.add("show");transcript.open=true;});
     card.append(visual,mediaStatus,element("h3",title),element("p",description),transcript);demos.append(card);
   });app.append(demos);
   app.append(sectionHead("What is built—and what is next","The local engine, the public preview and the intended product are distinct."));
