@@ -189,8 +189,8 @@ function renderAbout(){
     ["issues","04 · Product issue priorities","A product-area ranking is quantified, then bounded before action."]
   ].forEach(([key,title,description])=>{
     const card=element("section",undefined,"demo-card");
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png`;visual.setAttribute("aria-label",`${title}, 28-second simulated analyst interaction`);
-    const movie=element("source");movie.src=`./demo-${key}.mp4`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Use the interactive views above."));
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=13`;visual.setAttribute("aria-label",`${title}, 28-second simulated analyst interaction`);
+    const movie=element("source");movie.src=`./demo-${key}.mp4?v=13`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Use the interactive views above."));
     const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));
     card.append(visual,element("h3",title),element("p",description),transcript);demos.append(card);
   });app.append(demos);
