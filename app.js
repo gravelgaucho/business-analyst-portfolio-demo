@@ -186,8 +186,8 @@ function renderAbout(){
     ["issues","04 · Product issue priorities","Historical high-priority volume is separated from the active queue."]
   ].forEach(([key,title,description])=>{
     const card=element("section",undefined,"demo-card");
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=19`;visual.setAttribute("aria-label",`${title}, 25-second simulated analyst interaction`);
-    const movie=element("source");movie.src=`./demo-${key}.mp4?v=19`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Read the finding and sources below."));
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=20`;visual.setAttribute("aria-label",`${title}, 25-second simulated analyst interaction`);
+    const movie=element("source");movie.src=`./demo-${key}.mp4?v=20`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Read the finding and sources below."));
     const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));
     const mediaStatus=element("p","If the video cannot load, open the written finding and sources below.","demo-media-status");
     visual.addEventListener("error",()=>{mediaStatus.textContent="Video unavailable. The written finding and sources are open below.";mediaStatus.classList.add("show");transcript.open=true;});
