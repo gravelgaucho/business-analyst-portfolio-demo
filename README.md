@@ -30,11 +30,12 @@ continues separately.
 - A guided Vantara example: 783 linked tickets, 269 incident tickets and 58 incidents in
   Revenue Analytics & Reporting, including 22 P1 cases. The 58-record link applies the
   account, incident-type and product-area conditions. This is an observation, not a causal claim.
-- Four captioned, 18-second simulated analyst interactions (`demo-*.mp4`): support
+- Four captioned, 25-second simulated analyst interactions (`demo-*.mp4`): support
   concentration, a nine-clause Growth-versus-Enterprise agreement comparison, an
   East-versus-West opportunity comparison, and product-issue prioritization. Each opens
-  with a material answer after three seconds, shows more rows at once and scrolls through the source-checked breakdown,
-  then states an implication, next check, and limit. Expandable text findings accompany
+  with a material answer after three seconds, scrolls through the source-checked breakdown,
+  opens a filtered source list and a selected record or clause, then states an implication,
+  next check, and limit. Expandable text findings accompany
   the videos. No model generated these videos.
 
 ## Data boundaries
