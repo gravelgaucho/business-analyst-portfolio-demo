@@ -9,26 +9,56 @@
   <link rel="stylesheet" href="./style.css?v=15">
   <link rel="stylesheet" href="./video.css?v=16">
   <link rel="stylesheet" href="./architecture.css?v=28">
-  <script src="./app.js?v=28" defer></script>
+  <link rel="stylesheet" href="./site.css?v=2">
+  <script src="./story.js?v=2" defer></script>
+  <script src="./app.js?v=30" defer></script>
 </head>
 <body>
   <div class="shell">
-    <aside class="rail" aria-label="Main navigation">
-      <div class="brand"><span class="brand-mark">BA<span></span></span><span class="brand-name">Business<br>Analyst</span></div>
-      <p class="rail-kicker">PORTFOLIO PREVIEW</p>
-      <nav>
-        <button class="nav-item active" data-view="overview"><span>01</span> Overview</button>
-        <button class="nav-item" data-view="explore"><span>02</span> Explore data</button>
-        <button class="nav-item" data-view="investigation"><span>03</span> Guided finding</button>
-        <button class="nav-item" data-view="about"><span>04</span> Watch demos</button>
-        <button class="nav-item nav-case" data-view="case">End-to-end case sample</button>
+    <header class="site-header">
+      <a class="brand" href="#overview" data-view="overview" aria-label="Business Analyst Home"><span class="brand-mark">BA<span></span></span><span class="brand-name">Business<br>Analyst</span></a>
+      <button id="menu-toggle" class="btn menu-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <details class="site-menu" data-pages="overview why how">
+          <summary>Product</summary>
+          <div class="nav-dropdown">
+            <a href="#overview" data-view="overview">Overview <small>What it is, and who it serves</small></a>
+            <a href="#why" data-view="why">Why It Exists <small>The business problem and its users</small></a>
+            <a href="#how" data-view="how">How It Works <small>Question to evidence to decision</small></a>
+          </div>
+        </details>
+        <details class="site-menu" data-pages="workflows investigation case explore">
+          <summary>Workflows</summary>
+          <div class="nav-dropdown">
+            <a href="#workflows" data-view="workflows">Choose A Workflow <small>Two ways to investigate</small></a>
+            <a href="#investigation" data-view="investigation">Visual Support Workflow <small>Compare areas, then inspect tickets</small></a>
+            <a href="#case" data-view="case">End-To-End Case Sample <small>Follow a chain of management questions</small></a>
+            <a href="#explore" data-view="explore">Data Workspace <small>Browse all seven source indexes</small></a>
+          </div>
+        </details>
+        <a class="site-nav-link" href="#possibilities" data-view="possibilities">Solutions</a>
+        <details class="site-menu" data-pages="engineering scale">
+          <summary>Engineering</summary>
+          <div class="nav-dropdown">
+            <a href="#engineering" data-view="engineering">Technical Deep Dive <small>Serving, tools, orchestration, and evidence</small></a>
+            <a href="#scale" data-view="scale">Enterprise Scale <small>Data systems, larger models, and compute</small></a>
+          </div>
+        </details>
+        <details class="site-menu" data-pages="about roadmap">
+          <summary>Resources</summary>
+          <div class="nav-dropdown">
+            <a href="#about" data-view="about">Demo Videos <small>Four illustrated investigations</small></a>
+            <a href="#roadmap" data-view="roadmap">Roadmap And Implementation <small>Qualification, company pilots, and portability</small></a>
+            <a href="https://github.com/gravelgaucho/ai-business-operations-analyst" target="_blank" rel="noreferrer">Project Source ↗ <small>Published engine milestones</small></a>
+          </div>
+        </details>
       </nav>
-      <div class="rail-bottom"><span class="status-dot"></span> Synthetic snapshot <small>Read-only · No model call</small></div>
-    </aside>
+      <a class="header-demo btn primary" href="#workflows" data-view="workflows">Explore The Demo ↗</a>
+    </header>
     <main>
-      <header class="topbar"><span>Local-first intelligence, made inspectable.</span><a href="https://github.com/gravelgaucho/ai-business-operations-analyst" target="_blank" rel="noreferrer">View the project ↗</a></header>
+      <div class="contextbar"><span id="view-label">Product Overview</span><span>Julio Campos · Applied AI Portfolio</span></div>
       <div id="app" aria-live="polite"><div class="loading">Opening the synthetic snapshot…</div></div>
-      <footer><span>Built by Julio Campos · A portfolio proof of concept</span><span>DevRev Enterprise-Bench / Maple Payments · Synthetic data · <a href="./THIRD_PARTY_LICENSE.txt" target="_blank" rel="noreferrer">Apache-2.0 license</a></span></footer>
+      <footer><span>Built By Julio Campos · A Portfolio Proof Of Concept</span><span>DevRev Enterprise-Bench / Maple Payments · Synthetic Data · <a href="./THIRD_PARTY_LICENSE.txt" target="_blank" rel="noreferrer">Apache-2.0 License</a></span></footer>
     </main>
   </div>
   <dialog id="record-dialog"><button id="dialog-close" class="dialog-close" aria-label="Close record">×</button><div id="dialog-content"></div></dialog>

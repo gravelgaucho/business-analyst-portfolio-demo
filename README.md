@@ -1,4 +1,4 @@
-# Business Analyst | Public portfolio preview
+# Business Analyst | Public Portfolio Preview
 
 **Live demo:** https://gravelgaucho.github.io/business-analyst-portfolio-demo/
 
@@ -9,11 +9,31 @@ and does not include the local export pipeline or model runtime.
 This is a separate, static public demonstration of the local-first AI Business Operations
 Analyst. It does **not** publish the development server, run an LLM, accept uploaded company
 data, or expose saved investigations. Visitors can browse a restricted field projection of
-the pinned synthetic Maple Payments snapshot and follow one precomputed, source-backed
-example. The [engine repository](https://github.com/gravelgaucho/ai-business-operations-analyst)
+the pinned synthetic Maple Payments snapshot and follow two precomputed, source-backed
+workflows. The [engine repository](https://github.com/gravelgaucho/ai-business-operations-analyst)
 continues separately.
 
-## What works
+## What Works
+
+- Navigation groups Product, Workflows, Solutions, Engineering, and Resources. Dedicated
+  pages separate Overview, Why, How, Workflows, Videos, Engineering, Possibilities,
+  Enterprise Scale, and Roadmap. Each page has a clear next step; old workflow and video
+  hashes remain valid.
+- The homepage separates a working workspace preview, the two workflow choices, and manual
+  source exploration. "Explore Without Asking The AI" contains only source browsing.
+  The preview switches between a source-backed support table and an annotated sales brief.
+  Its product-area links open the actual incident filters; no editable live-chat box is implied.
+- Headings, summaries, UI labels, and portfolio credit lines capitalize every word.
+  Source names and subjects remain verbatim in quoted record content and field values.
+- A workflow hub explains visual exploration versus conversational investigation.
+  The Vantara path starts with an account and filters; the East/West path starts with
+  a question and follows an annotated sequence. Neither presents a live model response.
+- Nine selectable business-domain examples explain questions, inputs, analytical methods,
+  useful outputs, and validation needs. Recruiting, supply chain, finance, strategy,
+  and industry adaptations are proposed applications rather than connected capabilities.
+- A proposed enterprise-scale design covers source admission, warehouse query pushdown,
+  scoped retrieval, permission-aware evidence, private GPU or approved hosted inference,
+  queues and workers, observability, and representative load testing. No capacity is claimed.
 
 - A separate, unnumbered end-to-end case sample: an East/West decision exhibit with
   direct links to opportunities and accounts. Four follow-up checks cover deal volume versus size,
@@ -25,13 +45,16 @@ continues separately.
   causal diagnosis or a completed business pilot.
 - A proposed pilot scorecard covers time to a reviewed answer, answer quality, evidence coverage,
   and implementation effort. These are evaluation criteria, not measured benefits or ROI claims.
-- An Overview that explains the business need for control over data, definitions, and evidence;
-  shows Julio Campos's work across applied AI, data engineering, and product design; and retains
-  the verified Vantara finding, source exploration, and four simulated demos.
-- An Overview architecture summary distinguishing the local model boundary, verified
+- An Overview that introduces the engine, its intended users, current status, and two
+  workflow entry points. The Why and How pages explain the need and analytical responsibilities.
+- A dedicated Engineering page distinguishes the local model boundary, verified
   JSON/SQLite data layer, business semantics, bounded lexical RAG, governed tools, provenance,
   evaluation gates, and the planned (not self-service) company-data onboarding path.
-- A separate end-state flow and proposed fine-tuning path. Tuning would use independently
+  Eight expandable chapters deepen the serving, data, catalog, orchestration, analytical,
+  provenance, state/recovery, and evaluation explanations. Julio's engineering contribution
+  remains visible in this section.
+- The How page retains the intended end-state flow; Roadmap retains the proposed fine-tuning
+  path. Tuning would use independently
   permitted examples, not Enterprise-Bench; no tuned model or live public inference is claimed.
 - A portability and implementation roadmap distinguishes the Mac/MLX runtime from reusable
   application contracts, then explains model qualification, company-specific semantic setup,
@@ -55,11 +78,11 @@ continues separately.
   with a material answer after three seconds, scrolls through the source-checked breakdown,
   opens a filtered source list and a selected record or clause, then shows a bounded decision,
   proposed owner, test, close-out measure, and limit. The full East/West case has its own
-  page, linked from the Overview's management-question card.
-  Expandable text findings accompany
-  the videos. No model generated these videos.
+  page, linked from the Overview's management-question card. A four-item video playlist
+  shows one player at a time, pauses hidden players, and links to workflows or source indexes.
+  Expandable text findings accompany the videos. No model generated these videos.
 
-## Data boundaries
+## Data Boundaries
 
 The local export pipeline verifies the pinned DevRev Enterprise-Bench archive before
 creating the public `data/*.json` projection. It exports an allowlist of fields, not the original files.
@@ -73,7 +96,7 @@ credential, document body, description, contact detail or email is included. The
 template; it is not an executed-customer-contract comparison. Source
 counts are not claims of full company coverage, and recorded CRM ACV is not revenue.
 
-## Validation and implementation
+## Validation And Implementation
 
 The export was checked against a fixed source commit and file-manifest hash. Focused offline
 contracts verified record counts, allowed fields, the guided finding, demo figures, media,
@@ -87,6 +110,31 @@ The regional comparison was checked at 320, 390, 768, and 1280 CSS pixels. It fi
 without clipped figures or page overflow. Mobile record inspection,
 technical disclosures and regional-video playback were also checked. The comparison
 uses its own compact sizing rather than the wider source explorer's table minimum.
+
+The October 9 product-story revision separates presentation content into `story.js`, while
+`app.js` retains source exploration, verified workflows, video behavior, and shared routing.
+The original material was redistributed across dedicated pages, with domain and scale proposals
+added. Workflow follow-up checks expand individually, with the first check open by default.
+Source indexes, calculations, and media files were not changed. Navigation groups,
+mobile menu behavior, direct routes, browser Back, source inspection, compound drill-downs,
+domain selection, technical disclosures, and the four-video playlist were checked locally.
+All 12 routes fit at 1280 and 390 CSS pixels. Focused 320-pixel checks found and corrected an
+unbroken-source-hash overflow by wrapping the hash, retaining its full text. The reporting
+and East won-opportunity paths still return 22 and 1,923 matching records respectively.
+Switching from the playing regional video pauses it. Five relevant source-fact,
+presentation, and asset contracts and JavaScript syntax checks pass; unchanged media
+evidence is retained. The heading audit covers all 12 routes, including the nested
+engineering/scale summaries and portfolio credit. The 320-pixel source inspector retains
+the original subject text without horizontal overflow. The homepage preview's reporting
+link opens exactly 58 incident records; manual browsing and workflow choice have separate
+sections with matching headings.
+
+Presentation reference points include [Ramp](https://ramp.com/),
+[Linear](https://linear.app/), and [Retool](https://retool.com/). Platform and architecture
+reference points include [Glean](https://www.glean.com/),
+[Hex](https://hex.tech/), and [Palantir AIP](https://www.palantir.com/docs/foundry/aip/overview).
+These inform information hierarchy and architectural comparison; they do not imply affiliation,
+feature parity, or enterprise qualification.
 
 ## Status
 
