@@ -107,13 +107,13 @@ async function renderExplore() {
   const renderId=++exploreRender;
   const rows=await records(explore.category);
   if(currentView!=="explore"||renderId!==exploreRender)return;
-  const info=categoryInfo[explore.category];app.replaceChildren(heading("THE DATA WORKSPACE","Explore the connected sample.","Search and filter the published index of all records in each selected collection. Open a row to inspect the fields included in this public preview."));
+  const info=categoryInfo[explore.category];app.replaceChildren(heading("THE DATA WORKSPACE","Explore the connected sample.","Choose a collection, combine filters, and open a record. This workspace contains a synthetic snapshot, not live company data."));
   appendDataCoverage();
   const toolbar=element("div",undefined,"toolbar");
   toolbar.append(fieldSelect("Collection",Object.entries(categoryInfo).map(([key,item])=>[key,item.label]),explore.category,value=>{explore={category:value,query:"",facet:"",value:"",account:"",page:0};renderExplore();}));
-  const search=element("div",undefined,"field search"),label=element("label","Search source index"),input=element("input");label.htmlFor="record-search";input.id="record-search";input.placeholder="Name, subject, ID…";input.value=explore.query;input.addEventListener("input",()=>{explore.query=input.value;explore.page=0;updateResults();});search.append(label,input);toolbar.append(search);
+  const search=element("div",undefined,"field search"),label=element("label","Search Records"),input=element("input");label.htmlFor="record-search";input.id="record-search";input.placeholder="Name, subject, ID…";input.value=explore.query;input.addEventListener("input",()=>{explore.query=input.value;explore.page=0;updateResults();});search.append(label,input);toolbar.append(search);
   const facets=Object.keys(summary.dimensions[explore.category]);
-  toolbar.append(fieldSelect("Filter by",[["","Any dimension"],...facets.map(key=>[key,key.replaceAll("_"," ")])],explore.facet,value=>{explore.facet=value;explore.value="";explore.facet2="";explore.value2="";explore.facet3="";explore.value3="";explore.page=0;renderExplore();}));
+  toolbar.append(fieldSelect("Filter by",[["","Choose A Field"],...facets.map(key=>[key,key.replaceAll("_"," ")])],explore.facet,value=>{explore.facet=value;explore.value="";explore.facet2="";explore.value2="";explore.facet3="";explore.value3="";explore.page=0;renderExplore();}));
   if(explore.facet){const values=summary.dimensions[explore.category][explore.facet];toolbar.append(fieldSelect("Value",[["","All values"],...Object.keys(values).sort().map(value=>[value,display(value)])],explore.value,value=>{explore.value=value;explore.page=0;renderExplore();}));}
   if(explore.facet && explore.value){
     toolbar.append(fieldSelect("And filter by",[["","No second filter"],...facets.filter(key=>key!==explore.facet).map(key=>[key,key.replaceAll("_"," ")])],explore.facet2||"",value=>{explore.facet2=value;explore.value2="";explore.facet3="";explore.value3="";explore.page=0;renderExplore();}));
@@ -132,7 +132,7 @@ async function renderExplore() {
   const meta=element("div",undefined,"result-meta"),container=element("div"),pager=element("div",undefined,"pager");app.append(meta,container,pager);
   function updateResults(){
     const found=matchingRows(rows),start=explore.page*50,pageRows=found.slice(start,start+50);
-    meta.replaceChildren(element("span",`${number(found.length)} matching records · ${number(rows.length)} in the connected ${info.label.toLowerCase()} index`),element("strong","Snapshot, not live company data"));
+    meta.replaceChildren(element("span",`${number(found.length)} matching records · ${number(rows.length)} in the connected ${info.label.toLowerCase()} index`),element("strong","Synthetic Snapshot"));
     const shell=element("div",undefined,"table-shell"),table=element("table"),thead=element("thead"),tr=element("tr");
     info.columns.forEach(key=>tr.append(element("th",key.replaceAll("_"," "))));thead.append(tr);table.append(thead);
     const body=element("tbody");pageRows.forEach(row=>{const tr=element("tr");info.columns.forEach((key,i)=>{const td=element("td");if(i===0)td.append(button(display(row[key]),()=>inspectRecord(explore.category,row),"record-button"));else td.append(element("span",display(row[key]),i===2?"pill":""));tr.append(td);});body.append(tr);});table.append(body);shell.append(table);container.replaceChildren(shell);
@@ -140,7 +140,7 @@ async function renderExplore() {
     pager.firstChild.disabled=explore.page===0;pager.lastChild.disabled=start+50>=found.length;
   }
   updateResults();
-  app.append(element("p","Search covers the included public index fields, not hidden source descriptions or document bodies. Opportunity ACV is recorded source data, not revenue, cash or a forecast. Product areas are derived only from explicit component-parent links; one record can appear in more than one area.","note"));
+  app.append(element("p","Search covers the included public index fields, not hidden source descriptions or document bodies. Opportunity ACV is recorded source data, not revenue, cash, or a forecast. Product areas are derived only from explicit component-parent links; one record can appear in more than one area.","note"));
   const provenance=panel("Source and scope","Every row above comes from the pinned DevRev Enterprise-Bench / Maple Payments synthetic snapshot. This site distributes a limited field projection for all seven displayed collections, not the original files or model output.");provenance.append(element("p",`Source commit ${summary.source_commit} · Manifest ${summary.manifest_sha256.slice(0,16)}…`,"note"));app.append(provenance);
 }
 
@@ -192,8 +192,8 @@ async function renderInvestigation(){
 }
 
 function renderAbout(){
-  app.replaceChildren(heading("ILLUSTRATED INVESTIGATIONS","Watch the questions become findings.","Four brief, source-checked simulations show the kind of business answer this project is designed to deliver. They use approved synthetic records; the public site does not run a live model."));
-  app.append(sectionHead("Four questions. Four decision paths.","Each 34-second video moves from a material answer through the breakdown and source record to a decision, proposed owner, test, and close-out measure. These are illustrated simulations, not live model runs or completed business actions."));
+  app.replaceChildren(heading("ILLUSTRATED INVESTIGATIONS","Watch the questions become findings.","Four 34-second simulations: a question, a finding, the supporting records, and a next decision. Synthetic data; no live model call."));
+
   const workspace=element("div",undefined,"demo-workspace"),playlist=element("div",undefined,"demo-playlist"),demos=element("div",undefined,"demo-grid");playlist.setAttribute("role","group");playlist.setAttribute("aria-label","Choose a demo video");const demoCards=[],demoVideos=[],demoButtons=[];
   const demoNotes={
     support:["Finding: 269 of 783 Vantara tickets are incidents (34.4%). Revenue Analytics has the largest incident slice: 58 of 269 (21.6%), including 22 P1 incidents.","Drill-down: the video filters those 22 linked P1 records and opens TKT-22426. The 22 P1 cases span June 2024 through April 2026, and all are marked solved. This does not establish a current outage or recurring cause.","Decision: open a scoped reporting-quality review, not an emergency escalation based on historical volume alone.","Proposed owner and test: the support lead clusters the 22 P1 cases by date and symptom, then links confirmed product issues before asserting a pattern.","Close-out: after any approved fix, track recurrence and resolution quality. No fix or improvement has been measured by this demo.","Sources: ticket index, Vantara account ID, and component-to-product-area links."],
@@ -217,8 +217,8 @@ function renderAbout(){
     const choice=button(title,()=>{demoCards.forEach((item,i)=>item.hidden=i!==index);demoVideos.forEach((video,i)=>{if(i!==index)video.pause();});demoButtons.forEach((item,i)=>{item.classList.toggle("active",i===index);item.setAttribute("aria-pressed",String(i===index));});},"demo-choice"+(index===0?" active":""));choice.dataset.demo=key;choice.setAttribute("aria-pressed",String(index===0));demoButtons.push(choice);playlist.append(choice);
     const actions=element("div",undefined,"actions");if(key==="support"||key==="regions")actions.append(button("Open the full "+(key==="support"?"visual workflow":"conversational case")+" ↗",()=>navigate(key==="support"?"investigation":"case")));else actions.append(button("Explore the "+(key==="contracts"?"document index":"product issues")+" ↗",()=>{explore={category:key==="contracts"?"documents":"issues",query:"",facet:"",value:"",account:"",page:0};navigate("explore");}));card.append(actions);
   });workspace.append(playlist,demos);app.append(workspace);
-  const guide=panel("What you can verify here","All four demos use facts checked against the approved synthetic snapshot. The contract video publishes nine extracted terms per tier, not document bodies. Explore seven source indexes and open two precomputed workflows. No live model request runs here. The margin question remains out of scope because this public projection lacks matched revenue and direct costs.");guide.append(button("Choose a workflow",()=>navigate("workflows"),"btn primary"),button("How the engine works",()=>navigate("how")));app.append(guide);
-  app.append(element("p",`Data source: DevRev Enterprise-Bench / Maple Payments, commit ${summary.source_commit}. Public indexes are generated from a checksum-verified synthetic snapshot. The benchmark's hidden tasks, judging, generated finance scenarios, and saved model attempts are not distributed.`,"note"));
+  const guide=panel("What you can verify here","All four demos use facts checked against the approved synthetic snapshot. The contract video publishes nine extracted terms per tier, not document bodies. Explore seven source indexes and open two precomputed workflows. No live model request runs here. The margin question remains out of scope because this public projection lacks matched revenue and direct costs.");guide.append(button("Choose a workflow",()=>navigate("workflows"),"btn primary"),button("How the engine works",()=>navigate("how")));const publication=deeper("Demo Scope And Source Coverage",guide);app.append(publication);
+  publication.append(element("p",`Data source: DevRev Enterprise-Bench / Maple Payments, commit ${summary.source_commit}. Public indexes are generated from a checksum-verified synthetic snapshot. The benchmark's hidden tasks, judging, generated finance scenarios, and saved model attempts are not distributed.`,"note"));
   pageNext("Inspect the engineering behind the experience","engineering","Go deeper into serving, orchestration, analytical tools, provenance, and evaluation.");
 }
 

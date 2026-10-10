@@ -129,12 +129,31 @@ the original subject text without horizontal overflow. The homepage preview's re
 link opens exactly 58 incident records; manual browsing and workflow choice have separate
 sections with matching headings.
 
-Presentation reference points include [Ramp](https://ramp.com/),
-[Linear](https://linear.app/), and [Retool](https://retool.com/). Platform and architecture
-reference points include [Glean](https://www.glean.com/),
-[Hex](https://hex.tech/), and [Palantir AIP](https://www.palantir.com/docs/foundry/aip/overview).
-These inform information hierarchy and architectural comparison; they do not imply affiliation,
-feature parity, or enterprise qualification.
+## Visitor experience review
+
+The public site no longer includes reference-point sections. The introductory pages
+use business language, while setup, workflow comparisons, domain methods, pilot
+criteria, and scaling checks remain available through labeled disclosures. The
+engineering chapters, source records, complete case studies, and video findings remain
+available for scrutiny. Applications are explicitly proposed, and the prepared
+conversational example is labeled separately from live AI chat.
+
+Compared with the previous published version, default visible content in the main
+page area fell from 458 to 258 words on Why It Exists, 566 to 237 on How It Works,
+and 240 to 96 on Demo Videos. These counts exclude unopened disclosures and measure
+reading load, not total retained content.
+
+The presentation review examined the official Attio, Granola, and Clay sites for
+clear product framing, concrete demonstrations, and deliberate paths to detail.
+Their brands, assets, endorsements, and capability claims are not used by this demo.
+Source datasets, analytical calculations, and video assets are unchanged.
+
+Review checks: all 12 routes render one primary heading, consistently capitalized
+headings, and no page overflow at 1280 and 320 CSS pixels. Mobile navigation closes
+after a destination is selected. Method disclosures, recruiting-domain selection,
+and the homepage drill-down to 58 reporting incidents work. Explorer fields retain
+44-pixel minimum heights. Five relevant existing contracts and both JavaScript
+syntax checks pass; browser consoles reported no errors during these checks.
 
 ## Status
 
