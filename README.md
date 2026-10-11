@@ -22,7 +22,10 @@ continues separately.
 - The homepage separates a working workspace preview, the two workflow choices, and manual
   source exploration. "Explore Without Asking The AI" contains only source browsing.
   The preview switches between a source-backed support table and an annotated sales brief.
-  Its product-area links open the actual incident filters; no editable live-chat box is implied.
+  Its product-area links open filtered records inside the preview; no editable live-chat box is implied.
+  Sidebar selections and record inspection stay inside that panel. Back controls
+  retain the selection. Explicit full-workspace/workflow links are the exits;
+  the workspace link carries the same category and filters into the larger explorer.
 - Page and section headings use editorial title case. Buttons, tabs, fields, table
   labels, and disclosures use sentence case. Proper names, acronyms, the established
   portfolio title, and original source text are preserved.

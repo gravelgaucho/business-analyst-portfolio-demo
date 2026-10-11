@@ -20,22 +20,44 @@ function manualSourceSection(){
 }
 function productScene(){
   const section=element("section",undefined,"product-scene");section.dataset.purpose="product-preview";
-  const top=element("div",undefined,"scene-top");top.append(element("span","INSIDE THE WORKSPACE","architecture-label"),element("span","Verified Synthetic Snapshot","scene-snapshot"));section.append(top);
+  const top=element("div",undefined,"scene-top");top.append(element("span","INSIDE THE WORKSPACE","architecture-label"),element("span","Interactive preview · Synthetic snapshot","scene-snapshot"));section.append(top);
   const shell=element("div",undefined,"scene-shell"),rail=element("aside",undefined,"scene-rail"),main=element("div",undefined,"scene-main");
-  rail.append(element("strong","Business Analyst"),element("span","Workspace","scene-rail-label"));[["Accounts","accounts"],["Opportunities","opportunities"],["Support Tickets","tickets"],["Product Issues","issues"]].forEach(([label,key])=>rail.append(button(label,()=>openCollection(key),"scene-collection")));rail.append(element("p","Explore the records behind the answer."));
-  const tabs=element("div",undefined,"scene-tabs");tabs.setAttribute("role","group");tabs.setAttribute("aria-label","Choose a workspace preview");const body=element("div",undefined,"scene-body"),buttons=[];
-  const show=mode=>{buttons.forEach((item,i)=>{item.classList.toggle("active",i===mode);item.setAttribute("aria-pressed",String(i===mode));});body.replaceChildren();
+  rail.append(element("strong","Business Analyst"),element("span","Workspace","scene-rail-label"));[["Accounts","accounts"],["Opportunities","opportunities"],["Support Tickets","tickets"],["Product Issues","issues"]].forEach(([label,key])=>rail.append(button(label,()=>key==="tickets"?show(0):loadCollection(key),"scene-collection")));rail.append(element("p","Selections stay in this preview. Labeled links open the full pages."));
+  const tabs=element("div",undefined,"scene-tabs");tabs.setAttribute("role","group");tabs.setAttribute("aria-label","Choose a workspace preview");const body=element("div",undefined,"scene-body"),buttons=[];let previewCycle=0;
+  const show=mode=>{previewCycle++;body.setAttribute("aria-busy","false");rail.querySelectorAll("button").forEach((item,i)=>item.classList.toggle("active",mode===0&&i===2));buttons.forEach((item,i)=>{item.classList.toggle("active",i===mode);item.setAttribute("aria-pressed",String(i===mode));});body.replaceChildren();
     if(mode===0){
       body.append(element("div","VANTARA / SUPPORT / INCIDENTS","scene-breadcrumb"),element("h3","See where support demand is concentrated."));
       const stats=element("div",undefined,"scene-stats");[["269","Incident Records"],["58","Reporting Incidents"],["22","Reporting P1 Cases"]].forEach(([value,label])=>{const item=element("div");item.append(element("strong",value),element("span",sentenceText(label)));stats.append(item);});body.append(stats);
       const table=element("table",undefined,"scene-table"),head=element("thead"),header=element("tr");["Product Area","Incidents","P1"].forEach(label=>header.append(element("th",label)));head.append(header);table.append(head);const rows=element("tbody");
-      [["Revenue Analytics & Reporting",58,22],["Invoicing & Payment Lifecycle",53,21],["Billing & Subscription Management",47,16],["Checkout & Customer Experience",45,13],["Developer Experience & APIs",36,9],["Merchant Billing & Contracts",25,12]].forEach(([area,count,p1])=>{const row=element("tr"),name=element("td");name.append(button(area,()=>{explore={category:"tickets",query:"",facet:"ticket_type",value:"incident",facet2:"product_areas",value2:area,account:"ACC-013",page:0};navigate("explore");},"record-button"));row.append(name,element("td",String(count)),element("td",String(p1)));rows.append(row);});const unclassified=element("tr");unclassified.append(element("td","No Recorded Product Area"),element("td","5"),element("td","1"));rows.append(unclassified);table.append(rows);body.append(table,element("p","Account ACC-013 · P1 is the recorded priority label. All 269 incidents are marked solved; counts do not establish current impact.","scene-note"),button("Follow the Visual Workflow ↗",()=>navigate("investigation"),"btn"));
+      [["Revenue Analytics & Reporting",58,22],["Invoicing & Payment Lifecycle",53,21],["Billing & Subscription Management",47,16],["Checkout & Customer Experience",45,13],["Developer Experience & APIs",36,9],["Merchant Billing & Contracts",25,12]].forEach(([area,count,p1])=>{const row=element("tr"),name=element("td");name.append(button(area,()=>loadCollection("tickets",area),"record-button"));row.append(name,element("td",String(count)),element("td",String(p1)));rows.append(row);});const unclassified=element("tr");unclassified.append(element("td","No Recorded Product Area"),element("td","5"),element("td","1"));rows.append(unclassified);table.append(rows);body.append(table,element("p","Account ACC-013 · P1 is the recorded priority label. All 269 incidents are marked solved; counts do not establish current impact.","scene-note"),button("Open the full visual workflow ↗",()=>navigate("investigation"),"btn"));
     }else{
       body.append(element("div","EAST / WEST / ALL RECORDED OPPORTUNITIES","scene-breadcrumb"),element("h3","A better decision starts with the next question."));
       const prompt=element("blockquote","East leads on contract value. Should West copy its approach?","scene-prompt");body.append(prompt);
       const brief=element("div",undefined,"scene-brief");brief.append(element("span","DECISION BRIEF","architecture-label"),element("strong","Do not copy East’s playbook based on totals."),element("p","East’s recorded won ACV is $43.715M higher, but West has 1.7% more won ACV per indexed account. The account mixes differ, so the totals do not establish which team sells better."));
-      const checks=element("ul");["Separate volume from average deal size.","Compare sales motion and account coverage.","Commission a matched pipeline review before a rollout."].forEach(copy=>checks.append(element("li",copy)));brief.append(checks);body.append(brief,element("p","Precomputed Case · ACV is annual contract value, not revenue or cash.","scene-note"),button("Read the Decision and Follow-Ups ↗",()=>navigate("case"),"btn primary"));
+      const checks=element("ul");["Separate volume from average deal size.","Compare sales motion and account coverage.","Commission a matched pipeline review before a rollout."].forEach(copy=>checks.append(element("li",copy)));brief.append(checks);body.append(brief,element("p","Precomputed Case · ACV is annual contract value, not revenue or cash.","scene-note"),button("Open the full case and follow-ups ↗",()=>navigate("case"),"btn primary"));
     }
+  };
+
+  const openFull=(category,area="")=>{explore=area?{category,query:"",facet:"ticket_type",value:"incident",facet2:"product_areas",value2:area,account:"ACC-013",page:0}:{category,query:"",facet:"",value:"",account:"",page:0};navigate("explore");};
+  const showList=(category,area,rows)=>{
+    body.replaceChildren(element("div",area?"VANTARA / SUPPORT / "+area.toUpperCase():"WORKSPACE / "+categoryInfo[category].label.toUpperCase(),"scene-breadcrumb"),element("h3",area||categoryInfo[category].label));
+    body.append(element("p",`Previewing ${Math.min(5,rows.length)} of ${number(rows.length)} records. Select a row to inspect it here.`,"scene-note"));
+    const list=element("div",undefined,"scene-record-list");
+    rows.slice(0,5).forEach(row=>{const item=button("",()=>showRecord(category,area,rows,row),"scene-record-choice");item.append(element("span",row[categoryInfo[category].id],"scene-record-id"),element("span",display(row[categoryInfo[category].name])));list.append(item);});
+    body.append(list,button("Back to support overview",()=>show(0),"text-button"),button("Open this selection in the full workspace ↗",()=>openFull(category,area),"btn"));
+  };
+  const showRecord=(category,area,rows,row)=>{
+    body.replaceChildren(element("div","SOURCE RECORD / "+row[categoryInfo[category].id],"scene-breadcrumb"),element("h3","Inspect the source record"),element("blockquote",display(row[categoryInfo[category].name]),"source-title-quote"));
+    const detail=element("div",undefined,"scene-record");
+    Object.entries(row).forEach(([key,value])=>{const line=element("div",undefined,"record-kv");line.append(element("b",sentenceText(key.replaceAll("_"," ")).replace(/\\bid\\b/gi,"ID").replace(/\\bacv\\b/gi,"ACV")),element("span",display(value)));detail.append(line);});
+    body.append(detail,button("Back to these records",()=>showList(category,area,rows),"text-button"),button("Open this selection in the full workspace ↗",()=>openFull(category,area),"btn"));
+  };
+  const loadCollection=async(category,area="")=>{
+    const cycle=++previewCycle;buttons.forEach((item,i)=>{item.classList.toggle("active",i===0);item.setAttribute("aria-pressed",String(i===0));});rail.querySelectorAll("button").forEach((item,i)=>item.classList.toggle("active",["accounts","opportunities","tickets","issues"][i]===category));
+    body.replaceChildren(element("p","Loading the preview records…","scene-note"));body.setAttribute("aria-busy","true");
+    try{const source=await records(category);if(cycle!==previewCycle||currentView!=="overview")return;const rows=area?source.filter(row=>row.account_id==="ACC-013"&&row.ticket_type==="incident"&&row.product_areas.includes(area)):source;showList(category,area,rows);}
+    catch{if(cycle===previewCycle)body.replaceChildren(element("p","Preview records could not load. Please try the selection again.","scene-note"));}
+    finally{if(cycle===previewCycle)body.setAttribute("aria-busy","false");}
   };
   ["Data Explorer","Analyst Brief"].forEach((label,index)=>{const item=button(label,()=>show(index),"scene-tab");buttons.push(item);tabs.append(item);});main.append(tabs,body);shell.append(rail,main);section.append(shell);show(0);return section;
 }
