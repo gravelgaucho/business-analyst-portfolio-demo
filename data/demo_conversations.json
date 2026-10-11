@@ -1,0 +1,93 @@
+{
+  "duration_seconds": 86,
+  "conversations": {
+    "support": [
+      [
+        "Where should Vantara's support team focus?",
+        "Start with a reporting-quality review. Revenue Analytics has 58 of 269 incidents (21.6%), including 22 tagged P1. Invoicing is close behind with 53 incidents and 21 P1 cases. All 269 incidents are marked solved. This is a review priority, not evidence of a current outage.",
+        "269 incidents / account ACC-013"
+      ],
+      [
+        "Is this a repeat problem, or just old tickets?",
+        "The 22 reporting P1 cases span June 2024 to April 2026. Two subjects describe dashboard slowness over a long date range. Another describes a dashboard/API discrepancy. Those are leads to inspect; matching subjects alone do not establish a shared defect or failed resolution.",
+        "TKT-24984 / TKT-30404 / TKT-22426"
+      ],
+      [
+        "Show me a source, and explain the calculation.",
+        "Here is TKT-22426: a reporting discrepancy between dashboard and API, recorded December 14, 2025, tagged P1 and solved. For the share, I divided 58 reporting incidents by all 269 Vantara incidents: 21.6%. The breakdown uses recorded component-to-product-area links.",
+        "data/tickets.json / original record IDs"
+      ],
+      [
+        "What should the owner do next, and how would we know it worked?",
+        "The support lead should review the 22 reporting P1 cases against the 21 Invoicing cases, checking symptoms, closure notes, and customer confirmation. Link a product issue only if the evidence supports it. For an approved fix, track repeat incidents, reopened cases, and confirmed resolution over the same population and period. No improvement has been measured here.",
+        "Proposed handoff / human approval"
+      ]
+    ],
+    "contracts": [
+      [
+        "Compare the Growth and Enterprise agreements. What matters?",
+        "Enterprise sets tighter service targets. Uptime is 99.95% versus 99.5%. P0 first response is 10 versus 30 minutes, and the resolution target is 2 versus 8 hours. The nine matched terms also differ on API performance, dispute handling, maintenance notice, and credits. These are synthetic templates, not signed customer agreements.",
+        "MSA-003 / MSA-004 / nine matched terms"
+      ],
+      [
+        "Which differences would affect the way we operate?",
+        "Enterprise allows 7 business days to resolve billing disputes versus 15 for Growth. Maintenance notice is 168 versus 48 hours. API availability is 99.9% versus 99.0%, with p95 latency targets below 300 versus 800 milliseconds. A service owner would need to check whether actual processes meet the applicable signed terms.",
+        "Matched clauses / sections 2, 3, 4, 5, and 11"
+      ],
+      [
+        "Show the source behind the response target. What about credits?",
+        "Section 3.2 records a P0 first-response target of 10 minutes for Enterprise and 30 for Growth: a 20-minute difference. The credit caps are 100% and 25%, but their conditions differ: severe or repeated violations versus any single month. Treating the caps as equivalent remedies would miss that distinction.",
+        "Section 3.2 / sections 8.1 and 8.2"
+      ],
+      [
+        "Turn that into a practical review plan.",
+        "Legal and the service owner should build a tier-variance checklist, verify executed terms and amendments, and compare SLA records with the qualifying remedy conditions. Escalate a confirmed mismatch for human review. If a wording or process change is approved, monitor compliance against those terms. These templates do not establish a breach or credit owed.",
+        "Proposed commercial review / no breach established"
+      ]
+    ],
+    "regions": [
+      [
+        "East leads on contract value. Should West copy its approach?",
+        "Hold the rollout until the teams are compared fairly. East has $217.590M in recorded won annual contract value versus West's $173.875M, a $43.715M gap. East also has 365 more won records. West's marked-won share is slightly higher: 66.9% versus 66.2%. Contract value is not revenue or cash.",
+        "East and West / all recorded opportunities"
+      ],
+      [
+        "Is the gap mostly deal volume or deal size?",
+        "Mostly volume in this snapshot. Average won value is $113.2K in East and $111.6K in West. At West's average, East's 365 extra wins account for about $40.7M, or 93% of the gap. The gap appears in expansion, renewal, and new business. This decomposition describes the totals; it does not explain their cause.",
+        "1,923 East wins / 1,558 West wins"
+      ],
+      [
+        "Does the account mix change the picture? Show the source.",
+        "Yes. East has 14 indexed accounts; West has 11. Won value per indexed account is $15.542M in East and $15.807M in West, a 1.7% West lead. East has 13 prospects and one customer; West has three prospects and eight customers. OPP-040 is an example underlying win. Account mix prevents a productivity conclusion.",
+        "Account index / OPP-040 example record"
+      ],
+      [
+        "What would justify a change in West?",
+        "Sales operations should compare matched, dated cohorts: account potential, customer status, sales motion, territory, and rep capacity. Test opportunity supply and win conversion separately. Pilot a coverage change only for a verified supply gap; investigate execution if conversion is weaker. Agree a baseline and control before measuring the pilot. No causal advantage or pilot result is established here.",
+        "Proposed sales-operations handoff / human decision"
+      ]
+    ],
+    "issues": [
+      [
+        "Which high-priority product issues should we review first?",
+        "Begin with the active queue. Of 1,360 issues tagged high or highest priority, only 20 are marked in progress. Checkout, Billing, and Invoicing each have six; Developer APIs has two. Historical priority counts alone do not show today's business risk.",
+        "Product-issue index / priority plus status"
+      ],
+      [
+        "Are those 20 all bugs? Does the biggest backlog mean biggest risk?",
+        "No. The active set contains four bugs, nine tasks, and seven stories. Revenue Analytics has 248 high/highest records but none marked in progress. Checkout has 258, with six in progress. The status filter changes the review set; it does not quantify customer impact or establish which area deserves more resources.",
+        "20 active records / source issue types"
+      ],
+      [
+        "Open one of the Checkout issues. How did you choose it?",
+        "ISS-001 is 'Hosted Checkout blank on Safari iOS,' recorded January 10, 2025, tagged high and in progress. It is one of six Checkout records matching both priority and status filters. ISS-005 and ISS-011 are other examples. I selected it for source inspection, not as the most important issue; impact data is missing.",
+        "ISS-001 / ISS-005 / ISS-011"
+      ],
+      [
+        "What should the product owner do with this?",
+        "Review the 20 active records for current status, age, severity, affected accounts, and explicitly linked incidents. Rank work using confirmed customer impact and engineering effort, then approve the response. After an approved fix, track linked incidents and closure quality. The current index supports a triage list; it does not establish a resource allocation or measured risk reduction.",
+        "Proposed product-owner triage / impact data needed"
+      ]
+    ]
+  }
+}
