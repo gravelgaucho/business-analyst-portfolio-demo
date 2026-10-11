@@ -23,8 +23,9 @@ continues separately.
   source exploration. "Explore Without Asking The AI" contains only source browsing.
   The preview switches between a source-backed support table and an annotated sales brief.
   Its product-area links open the actual incident filters; no editable live-chat box is implied.
-- Headings, summaries, UI labels, and portfolio credit lines capitalize every word.
-  Source names and subjects remain verbatim in quoted record content and field values.
+- Page and section headings use editorial title case. Buttons, tabs, fields, table
+  labels, and disclosures use sentence case. Proper names, acronyms, the established
+  portfolio title, and original source text are preserved.
 - A workflow hub explains visual exploration versus conversational investigation.
   The Vantara path starts with an account and filters; the East/West path starts with
   a question and follows an annotated sequence. Neither presents a live model response.
@@ -72,15 +73,30 @@ continues separately.
   A proposed support-lead handoff explains how to validate classification, decide whether
   a fix is supported, and measure the outcome. No confirmed shared defect or completed
   intervention is claimed.
-- Four captioned, 34-second, native-1440p simulated analyst interactions (`demo-*.mp4`): support
+- Four 86-second, native-1440p prepared analyst conversations (`demo-*.mp4`): support
   concentration, a nine-clause Growth-versus-Enterprise agreement comparison, an
-  East-versus-West opportunity comparison, and product-issue prioritization. Each opens
-  with a material answer after three seconds, scrolls through the source-checked breakdown,
-  opens a filtered source list and a selected record or clause, then shows a bounded decision,
-  proposed owner, test, close-out measure, and limit. The full East/West case has its own
+  East-versus-West opportunity comparison, and product-issue prioritization. Each has
+  four question/answer exchanges in one continuous workspace, with the first answer
+  at five seconds. Smooth conversation and table scrolling accompany a complete
+  breakdown, source inspection, a decision, an owner, and outcome checks. Native
+  2560×1440 frames encode at 24 fps; the full matching conversation is available as text.
+  The full East/West case has its own
   page, linked from the Overview's management-question card. A four-item video playlist
   shows one player at a time, pauses hidden players, and links to workflows or source indexes.
   Expandable text findings accompany the videos. No model generated these videos.
+
+The current renderer is `make_conversation_walkthrough.py`, with the original
+slide renderer retained in Git history and as a source-fact verifier. The public
+`data/demo_conversations.json` contains only the prepared question/answer text and
+source labels. Tests compare that text with the rendering script and verify all
+underlying figures against the approved public projection before encoding.
+
+The conversation-video revision checks all four encoded files for 86-second duration,
+2560×1440 resolution, and 24 fps, with 16 complete exchanges in the matching written
+transcripts. Source-fact checks, focused presentation/asset contracts, and editorial
+capitalization checks pass. Desktop route review and mobile transcript access show
+no page overflow. A native media-event guard prevents a delayed play request from
+starting a hidden video after a playlist switch; the switch was reproduced and checked.
 
 ## Data Boundaries
 

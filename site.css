@@ -206,5 +206,7 @@ footer{max-width:1380px;margin:auto}
 .toolbar label{font-size:12px;line-height:1.4}
 .visitor-detail summary:focus-visible{outline:3px solid #aab0fa;outline-offset:4px;border-radius:5px}
 #app h3{letter-spacing:-.025em}
+.written-conversation{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.written-conversation blockquote{font-size:17px;line-height:1.5;margin:10px 0 20px;color:var(--ink)}
 @media(max-width:600px){.toolbar{display:grid;grid-template-columns:1fr 1fr}.toolbar .search{grid-column:1/-1}.toolbar .field{width:auto;max-width:100%}.toolbar select{font-size:13px}.visitor-detail{padding:18px}.visitor-detail .panel{padding:16px}}
 @media(max-width:360px){.toolbar{grid-template-columns:1fr}}

@@ -19,10 +19,13 @@ let exploreRender=0;
 let navigationCycle=0;
 const number = value => new Intl.NumberFormat("en-US").format(value);
 const display = value => Array.isArray(value) ? value.join(", ") || "Not recorded" : value === null || value === undefined || value === "" ? "Not recorded" : String(value).replaceAll("_"," ");
-const titleText = value => String(value).replace(/[\p{L}\p{N}][\p{L}\p{M}\p{N}'’]*/gu,word=>word.charAt(0).toLocaleUpperCase("en-US")+word.slice(1));
-const titleTags=new Set(["h1","h2","h3","h4","summary","label","caption","th","dt","strong"]);
-const element = (tag, content, className) => {const el=document.createElement(tag);if(content!==undefined){const isTitle=(titleTags.has(tag)||["maker-line","workflow-question","scene-decision-title"].includes(className))&&className!=="source-record-heading";el.textContent=isTitle?titleText(content):content;}if(className)el.className=className;return el;};
-const button = (label, action, className="btn") => {const el=element("button",className==="record-button"?label:titleText(label),className);el.addEventListener("click",action);return el;};
+const minorTitleWords=new Set("a an the and as at but by for from if in into nor of on or per so than through to via vs with without yet about above across after against along among around before behind below beneath beside between beyond despite during except inside onto outside over past since under until upon within".split(" "));
+const properUIWords=new Set("AI API APIs ACV ATS BA CRM CSV ERP FP&A GPU HBS ID IDs JSON LLM LLMs MBA MLX MLX-VLM P0 P1 Python RAG ROI SaaS SDK SHA SQL SQLite T&C UI USD UX Vantara East West Julio Campos Mac Pydantic Enterprise-Bench DevRev Maple Payments Growth Enterprise Safari iOS".split(" "));
+const titleText=value=>{const text=String(value),matches=[...text.matchAll(/[\p{L}\p{N}][\p{L}\p{M}\p{N}'’]*/gu)];let index=0;return text.replace(/[\p{L}\p{N}][\p{L}\p{M}\p{N}'’]*/gu,(word,offset)=>{const position=index++,first=position===0||/[.!?:]\s*$/.test(text.slice(0,offset)),last=position===matches.length-1;if(!first&&!last&&minorTitleWords.has(word.toLowerCase()))return word.toLowerCase();return word.charAt(0).toLocaleUpperCase("en-US")+word.slice(1);});};
+const sentenceText=value=>{const input=String(value),firstLetter=input.search(/\p{L}/u);return input.replace(/[\p{L}\p{N}][\p{L}\p{M}\p{N}'’]*/gu,(word,offset)=>{if(properUIWords.has(word)||/^[A-Z0-9]{2,}$/.test(word))return word;return offset===firstLetter?word.charAt(0).toUpperCase()+word.slice(1).toLowerCase():word.toLowerCase();});};
+const headingTags=new Set(["h1","h2","h3","h4"]),labelTags=new Set(["summary","label","caption","th","dt"]);
+const element = (tag, content, className) => {const el=document.createElement(tag);if(content!==undefined){el.textContent=className==="source-record-heading"?content:className==="maker-line"?"Built by Julio Campos · Applied AI Engineering, Business Analysis, And Product Design.":headingTags.has(tag)?titleText(content):labelTags.has(tag)?sentenceText(content):content;}if(className)el.className=className;return el;};
+const button = (label, action, className="btn") => {const el=element("button",className==="record-button"?label:sentenceText(label),className);el.addEventListener("click",action);return el;};
 const heading = (eyebrow,title,copy) => {const box=element("div");box.append(element("div",eyebrow,"eyebrow"),element("h1",title),element("p",copy,"hero-copy"));return box;};
 const sectionHead = (title,copy) => {const box=element("div",undefined,"section-head");box.append(element("h2",title),element("p",copy));return box;};
 const panel = (title,copy) => {const box=element("section",undefined,"panel");box.append(element("h3",title));if(copy)box.append(element("p",copy));return box;};
@@ -146,7 +149,7 @@ async function renderExplore() {
 
 function inspectRecord(category,row) {
   const box=document.querySelector("#dialog-content");box.replaceChildren(element("div","SOURCE RECORD · "+categoryInfo[category].label.toUpperCase(),"eyebrow"),element("h2",categoryInfo[category].label+" · "+display(row[categoryInfo[category].id]),"source-record-heading"),element("blockquote",display(row[categoryInfo[category].name]),"source-title-quote"));
-  Object.entries(row).forEach(([key,value])=>{const line=element("div",undefined,"record-kv");line.append(element("b",titleText(key.replaceAll("_"," ")).replace(/\bId\b/g,"ID").replace(/\bAcv\b/g,"ACV")),element("span",display(value)));box.append(line);});
+  Object.entries(row).forEach(([key,value])=>{const line=element("div",undefined,"record-kv");line.append(element("b",sentenceText(key.replaceAll("_"," ")).replace(/\bid\b/gi,"ID").replace(/\bacv\b/gi,"ACV")),element("span",display(value)));box.append(line);});
   const source=element("p",`Pinned synthetic source · ${categoryInfo[category].id}: ${row[categoryInfo[category].id]}`, "note");box.append(source);dialog.showModal();
 }
 
@@ -192,9 +195,10 @@ async function renderInvestigation(){
 }
 
 function renderAbout(){
-  app.replaceChildren(heading("ILLUSTRATED INVESTIGATIONS","Watch the questions become findings.","Four 34-second simulations: a question, a finding, the supporting records, and a next decision. Synthetic data; no live model call."));
+  app.replaceChildren(heading("ILLUSTRATED INVESTIGATIONS","Watch the questions become findings.","Four prepared conversations, about 90 seconds each. Follow the answer, challenge the interpretation, inspect the evidence, and review the next decision. Synthetic data; no live model call."));
 
   const workspace=element("div",undefined,"demo-workspace"),playlist=element("div",undefined,"demo-playlist"),demos=element("div",undefined,"demo-grid");playlist.setAttribute("role","group");playlist.setAttribute("aria-label","Choose a demo video");const demoCards=[],demoVideos=[],demoButtons=[];
+  const conversations=fetch("./data/demo_conversations.json").then(response=>{if(!response.ok)throw Error("Transcript unavailable");return response.json();});
   const demoNotes={
     support:["Finding: 269 of 783 Vantara tickets are incidents (34.4%). Revenue Analytics has the largest incident slice: 58 of 269 (21.6%), including 22 P1 incidents.","Drill-down: the video filters those 22 linked P1 records and opens TKT-22426. The 22 P1 cases span June 2024 through April 2026, and all are marked solved. This does not establish a current outage or recurring cause.","Decision: open a scoped reporting-quality review, not an emergency escalation based on historical volume alone.","Proposed owner and test: the support lead clusters the 22 P1 cases by date and symptom, then links confirmed product issues before asserting a pattern.","Close-out: after any approved fix, track recurrence and resolution quality. No fix or improvement has been measured by this demo.","Sources: ticket index, Vantara account ID, and component-to-product-area links."],
     contracts:["Finding: Enterprise versus Growth uptime is 99.95% versus 99.5%; P0 first-response target is 10 versus 30 minutes; P0 resolution target is 2 versus 8 hours.","Drill-down: the video opens matched section 3.2 in MSA-003 and MSA-004. Nine terms cover service, API, notice, and credits. The credit caps have different qualifying conditions.","Decision: prepare a tier-variance checklist, not a claim that any customer agreement was breached.","Proposed owners and test: legal and the service owner compare signed terms and amendments with actual SLA records and applicable remedy conditions.","Close-out: approve any wording or process change, then monitor compliance. These templates are not executed customer agreements, and no breach is established.","Sources: MSA-003 and MSA-004, sections 2, 3, 4, 5, 8, and 11."],
@@ -208,9 +212,11 @@ function renderAbout(){
     ["issues","04 · Product issue priorities","Historical high-priority volume is separated from the active queue."]
   ].forEach(([key,title,description],index)=>{
     const card=element("section",undefined,"demo-card");card.id=`demo-${key}`;
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=21`;visual.setAttribute("aria-label",`${title}, 34-second simulated analyst interaction`);
-    const movie=element("source");movie.src=`./demo-${key}.mp4?v=21`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Read the finding and sources below."));
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=22`;visual.setAttribute("aria-label",`${title}, 86-second prepared analyst conversation`);
+    const movie=element("source");movie.src=`./demo-${key}.mp4?v=22`;movie.type="video/mp4";visual.append(movie,element("p","Your browser cannot play this demo. Read the conversation and sources below."));
+    visual.addEventListener("play",()=>{if(card.hidden||currentView!=="about"){visual.pause();return;}demoVideos.forEach(other=>{if(other!==visual)other.pause();});});
     const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));
+    conversations.then(data=>{const turns=data.conversations[key];if(!Array.isArray(turns)||turns.length!==4)return;transcript.replaceChildren(element("summary","Read the conversation and sources"));turns.forEach(([question,answer,source])=>{const turn=element("section",undefined,"written-conversation");turn.append(element("span","You","architecture-label"),element("blockquote",question),element("span","Analyst","architecture-label"),element("p",answer),element("p",source,"note"));transcript.append(turn);});}).catch(()=>{});
     const mediaStatus=element("p","If the video cannot load, open the written finding and sources below.","demo-media-status");
     visual.addEventListener("error",()=>{mediaStatus.textContent="Video unavailable. The written finding and sources are open below.";mediaStatus.classList.add("show");transcript.open=true;});
     card.append(visual,mediaStatus,element("h3",title),element("p",description),transcript);card.hidden=index!==0;demoCards.push(card);demoVideos.push(visual);demos.append(card);
