@@ -110,7 +110,7 @@ async function renderExplore() {
   const renderId=++exploreRender;
   const rows=await records(explore.category);
   if(currentView!=="explore"||renderId!==exploreRender)return;
-  const info=categoryInfo[explore.category];app.replaceChildren(heading("THE DATA WORKSPACE","Explore the connected sample.","Choose a collection, combine filters, and open a record. This workspace contains a synthetic snapshot, not live company data."));
+  const info=categoryInfo[explore.category];app.replaceChildren(heading("THE DATA WORKSPACE","Explore the connected sample.","Choose a collection, compare its chart, and select a bar to inspect the supporting records. Opportunities, support tickets, and product issues have interactive breakdowns. All seven collections are searchable synthetic indexes."));
   appendDataCoverage();
   const toolbar=element("div",undefined,"toolbar");
   toolbar.append(fieldSelect("Collection",Object.entries(categoryInfo).map(([key,item])=>[key,item.label]),explore.category,value=>{explore={category:value,query:"",facet:"",value:"",account:"",page:0};renderExplore();}));
@@ -132,9 +132,11 @@ async function renderExplore() {
     toolbar.append(fieldSelect("Account",[["","All accounts"],...accounts.map(item=>[item.account_id,item.account_name]).sort((a,b)=>a[1].localeCompare(b[1]))],explore.account,value=>{explore.account=value;explore.page=0;renderExplore();}));
   }
   app.append(toolbar);
+  const visualization=Object.hasOwn(OpportunityChart.collections,explore.category)?opportunityView(rows,()=>explore,()=>{explore.page=0;updateResults();},explore.category):null;
+  if(visualization)app.append(visualization.box);
   const meta=element("div",undefined,"result-meta"),container=element("div"),pager=element("div",undefined,"pager");app.append(meta,container,pager);
   function updateResults(){
-    const found=matchingRows(rows),start=explore.page*50,pageRows=found.slice(start,start+50);
+    const found=visualization?visualization.refresh():matchingRows(rows),start=explore.page*50,pageRows=found.slice(start,start+50);
     meta.replaceChildren(element("span",`${number(found.length)} matching records · ${number(rows.length)} in the connected ${info.label.toLowerCase()} index`),element("strong","Synthetic Snapshot"));
     const shell=element("div",undefined,"table-shell"),table=element("table"),thead=element("thead"),tr=element("tr");
     info.columns.forEach(key=>tr.append(element("th",key.replaceAll("_"," "))));thead.append(tr);table.append(thead);

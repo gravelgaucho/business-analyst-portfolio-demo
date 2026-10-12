@@ -69,6 +69,15 @@ continues separately.
   transcript index records. Source bodies and people/contact fields are excluded.
 - Up to three combinable dimension filters, an account filter where a recorded account ID exists,
   50-record pages, and inspection of the public fields behind each result.
+- Interactive charts for opportunities, support tickets, and product issues. Opportunity
+  breakdowns show recorded ACV in one currency or record counts by region, stage, or
+  sales motion. Ticket and issue charts show counts by their recorded categories.
+  Filters apply before pagination; selecting a bar narrows the supporting records
+  while retaining the comparison. Exact totals, exclusions, missing groups, and
+  overlapping product-area memberships remain inspectable.
+- An optional question draft captures the selected records, filters, measure, units,
+  and source identity as downloadable JSON. The public site does not submit questions,
+  call a model, or connect to a visitor's localhost server.
 - A guided Vantara investigation: 783 linked tickets and 269 incidents. Revenue Analytics
   has 58 incidents and 22 P1 cases; Invoicing has 53 and 21. It compares all product areas,
   checks the historical P1 dates, opens two matching dashboard-slowness subjects and a
@@ -175,6 +184,17 @@ and the homepage drill-down to 58 reporting incidents work. Explorer fields reta
 syntax checks pass; browser consoles reported no errors during these checks.
 
 ## Status
+
+The visualization release adds opportunity, support-ticket, and product-issue charts,
+linked record selection, and an inspectable question draft to the public workspace.
+The layout, prepared workflows, videos, and approved source projection are retained.
+
+The separate local engine now has a dedicated browser application, analytical tools
+for the three business collections, exact recorded-value discovery, saved investigation
+sessions, and source replay. A focused live closed-won regional ACV investigation
+completed with the correct seven-region totals and evidence references. Its draft
+remains under review; this is not qualification of general business conversation.
+Those local services and private investigation records are not deployed by this site.
 
 This public preview demonstrates the dashboard and evidence UX, not production security,
 automatic interpretation of arbitrary questions, an official Enterprise-Bench score, or

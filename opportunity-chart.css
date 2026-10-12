@@ -1,0 +1,28 @@
+.opportunity-viz{margin:24px 0;padding:28px;min-width:0}
+.viz-top h2{margin:12px 0;font-size:28px}
+.viz-top p,.viz-handoff p{color:var(--muted);line-height:1.6}
+.viz-controls{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}
+.viz-controls .field{flex:1;min-width:145px}
+.viz-controls select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:9px;background:white;padding:9px;color:var(--ink)}
+.viz-controls label{display:block;font-size:12px;margin-bottom:7px}
+.viz-controls [hidden]{display:none}
+.viz-headline{font-size:18px;font-weight:600;line-height:1.5;max-width:78ch}
+.viz-bars{display:grid;gap:7px;margin:22px 0}
+.viz-bar{display:grid;grid-template-columns:155px minmax(40px,1fr) 225px;align-items:center;gap:16px;width:100%;min-height:48px;padding:10px 12px;border:1px solid transparent;background:transparent;border-radius:9px;color:var(--ink);text-align:left;font:inherit;cursor:pointer}
+.viz-bar:hover{background:var(--blue-soft)}
+.viz-bar[aria-pressed=true]{border-color:var(--blue);background:var(--blue-soft)}
+.viz-bar:focus-visible,.viz-handoff summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.viz-label{font-size:13px;overflow-wrap:anywhere}
+.viz-track{display:block;height:15px;border-radius:4px;background:#eff0f6;overflow:hidden}
+.viz-fill{display:block;height:100%;background:var(--blue);border-radius:4px}
+.viz-value{font-size:12px;font-variant-numeric:tabular-nums;text-align:right}
+.viz-selection{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.viz-handoff{border-top:1px solid var(--line);padding-top:20px}
+.viz-handoff summary{cursor:pointer;font-weight:600;line-height:1.5}
+.viz-handoff label{display:block;font-size:13px;margin:18px 0 8px}
+.viz-handoff textarea{box-sizing:border-box;width:100%;font:inherit;padding:12px;border:1px solid var(--line);border-radius:9px;resize:vertical;margin-bottom:14px}
+.viz-handoff .btn{margin:0 8px 8px 0}
+.viz-draft pre{max-height:280px;overflow:auto;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+.opportunity-viz .note{overflow-wrap:anywhere}
+@media(max-width:760px){.opportunity-viz{padding:20px}.viz-bar{grid-template-columns:minmax(0,1fr) auto;gap:8px}.viz-track{grid-column:1/-1;grid-row:2}.viz-value{max-width:165px;overflow-wrap:anywhere}.viz-controls{gap:10px}.viz-controls .field{min-width:120px}}
+@media(max-width:360px){.viz-bar{grid-template-columns:1fr}.viz-track{grid-row:3}.viz-value{text-align:left;max-width:none}.viz-top h2{font-size:24px}}
