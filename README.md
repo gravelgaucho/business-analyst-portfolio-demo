@@ -15,6 +15,17 @@ continues separately.
 
 ## What Works
 
+- The October 19 harness narrative introduces the investigation loop on How It Works
+  and expands the Engineering page with context engineering, accepted-history retention,
+  compact model-facing evidence, execution limits, request measurements, and structural
+  failure diagnosis. It distinguishes the agent harness from the evaluation harness.
+  An optional implementation walkthrough names Pydantic AI, Pydantic, native tool
+  registration, provider transport, session persistence, evidence contracts, and offline
+  SDK fixtures, then traces a regional question through those components.
+  Cache optimization, targeted discovery, history compaction, and streaming remain
+  identified as follow-on work. Offline preservation checks are not model-quality or
+  latency claims. The existing layout, source indexes, videos, and workflows are unchanged.
+
 - Navigation groups Product, Workflows, Solutions, Engineering, and Resources. Dedicated
   pages separate Overview, Why, How, Workflows, Videos, Engineering, Possibilities,
   Enterprise Scale, and Roadmap. Each page has a clear next step; old workflow and video
@@ -191,9 +202,10 @@ The layout, prepared workflows, videos, and approved source projection are retai
 
 The separate local engine now has a dedicated browser application, analytical tools
 for the three business collections, exact recorded-value discovery, saved investigation
-sessions, and source replay. A focused live closed-won regional ACV investigation
-completed with the correct seven-region totals and evidence references. Its draft
-remains under review; this is not qualification of general business conversation.
+sessions, and source replay. Selected historical model runs returned source-verified
+regional figures and also exposed interpretation failures. The latest harness work adds
+compact evidence views and admission/transport timing, verified offline. Model-quality
+qualification remains paused; reliable general business conversation is not qualified.
 Those local services and private investigation records are not deployed by this site.
 
 This public preview demonstrates the dashboard and evidence UX, not production security,
