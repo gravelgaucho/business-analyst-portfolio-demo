@@ -22,8 +22,11 @@ continues separately.
   An optional implementation walkthrough names Pydantic AI, Pydantic, native tool
   registration, provider transport, session persistence, evidence contracts, and offline
   SDK fixtures, then traces a regional question through those components.
-  Cache optimization, targeted discovery, history compaction, and streaming remain
-  identified as follow-on work. Offline preservation checks are not model-quality or
+  The current local checkpoint includes stable request-context assembly and optional
+  account-directory discovery. Compact discovery uses 1,998 versus 3,003 tokens for
+  the result text with all 42 accounts, an offline saving of 1,005 tokens (33.47%).
+  Actual cache reuse, history compaction, and streaming remain future work.
+  Offline preservation checks are not model-quality or
   latency claims. The existing layout, source indexes, videos, and workflows are unchanged.
 
 - Navigation groups Product, Workflows, Solutions, Engineering, and Resources. Dedicated
@@ -204,7 +207,10 @@ The separate local engine now has a dedicated browser application, analytical to
 for the three business collections, exact recorded-value discovery, saved investigation
 sessions, and source replay. Selected historical model runs returned source-verified
 regional figures and also exposed interpretation failures. The latest harness work adds
-compact evidence views and admission/transport timing, verified offline. Model-quality
+compact evidence views, admission/transport timing, stable request-context assembly,
+and optional account-directory discovery, verified offline. Three focused HTTP checks,
+12 interface checks, and browser inspection verify the dedicated app's basic controls.
+Model-quality
 qualification remains paused; reliable general business conversation is not qualified.
 Those local services and private investigation records are not deployed by this site.
 
