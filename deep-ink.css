@@ -1,0 +1,32 @@
+/* Deep blue accents with yellow reserved for small focal signals. */
+:root{
+  --deep-ink:#193452;
+  --prussian:#17466c;
+  --marine:#185681;
+  --signal-yellow:#f5cd47;
+  --blue:var(--deep-ink);
+  --blue-soft:#edf2f5;
+  --lime:#ffffff;
+  --signal-light:#ffffff;
+  --signal-bright:#f5f6f7;
+}
+.brand-mark span{background:var(--signal-yellow)}
+.site-menu[open] summary,.site-menu.current summary{color:var(--prussian);background:var(--blue-soft)}
+.text-button,.process-trace-detail .architecture-label{color:var(--marine)}
+.hero-aside .eyebrow,.home-engineering .architecture-label{color:var(--signal-yellow)}
+.home-hero .hero-aside{background:linear-gradient(145deg,var(--deep-ink),var(--dark) 85%)}
+.analyst-system-hub{background:var(--deep-ink);border-color:var(--deep-ink)}
+.hero-aside .btn:hover,.home-engineering .btn:hover{background:#eceef0;border-color:#eceef0}
+.scene-snapshot:before,.status-dot{background:var(--blue)}
+.analyst-system-question,.analyst-system-example,.process-map,.process-terms div{background:#19345209}
+.runtime-map{background:radial-gradient(ellipse at 50% 42%,#23354a 0%,transparent 62%),radial-gradient(circle,#3d4c60 1px,transparent 1.3px) 0 0/18px 18px,#121419}
+.runtime-node-harness{background:linear-gradient(135deg,var(--prussian),var(--deep-ink));border-color:#7693b0}
+.runtime-node-mark{background:#172634;border-color:#637f9b;color:#d2e1ef}
+.runtime-node.is-active{box-shadow:0 0 0 2px #ffffff30,0 8px 24px #070a1180}
+.runtime-node.is-active .runtime-node-mark,.process-handoff,.process-trace-step:hover:not([aria-pressed="true"]),.process-pager-button:hover:not(:disabled){color:var(--blue)}
+.process-active-route{filter:drop-shadow(0 0 3px #ffffff50)}
+.process-route-pulse{fill:var(--signal-yellow);stroke:#664f13}
+.process-trace-step[aria-pressed="true"]{background:var(--prussian);border-color:var(--prussian)}
+.handoff-lab .handoff-play{background:var(--signal-yellow);border-color:var(--signal-yellow);color:#201c12}
+.process-trace-step:hover:not([aria-pressed="true"]),.process-pager-button:hover:not(:disabled){border-color:#9299a3}
+.handoff-beat-controls button[aria-pressed="true"],.handoff-lab .handoff-play{color:var(--blue)}

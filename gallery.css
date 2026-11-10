@@ -1,0 +1,59 @@
+/* Gallery Contrast palette trial. Color only; layout lives in the base styles. */
+:root{
+  --canvas:#ffffff;
+  --paper:#ffffff;
+  --ink:#16181c;
+  --muted:#555b65;
+  --line:#dfe2e7;
+  --blue:#214ed2;
+  --blue-soft:#eef2ff;
+  --lime:#c5d3ff;
+  --dark:#15171c;
+  --signal-light:#cbd7ff;
+  --signal-bright:#91adff;
+  --graphite-panel:#23262d;
+  --graphite-line:#565d6a;
+  --graphite-muted:#c8cfdb;
+}
+.site-header{background:rgba(255,255,255,.98)}
+.site-nav-link,.site-menu summary{color:var(--muted)}
+.site-menu[open] summary,.site-menu.current summary,.nav-dropdown,.source-tile,.demo-choice,.domain-tab{background:var(--paper)}
+.demo-choice.active{background:var(--dark)}
+.hero-aside .btn:hover,.home-engineering .btn:hover{background:#e0e8ff;border-color:#e0e8ff}
+.product-scene{background:#f1f2f4;border-color:var(--line);box-shadow:0 18px 50px #14181e0c}
+.scene-shell{background:var(--paper);border-color:var(--line)}
+.scene-rail,.scene-record-choice{background:#f7f8fa}
+.scene-snapshot,.scene-collection{color:var(--muted)}
+.scene-snapshot:before,.status-dot{background:#214ed2}
+.analyst-system-question,.analyst-system-example,.process-map,.process-terms div{background:#214ed209}
+.analyst-system-hub,.process-harness,.handoff-lab{background:var(--dark);color:var(--paper);border-color:var(--dark)}
+.analyst-system-hub .architecture-label,.process-harness .architecture-label,.handoff-lab .architecture-label{color:var(--signal-light)}
+.analyst-system-hub li+li{border-color:var(--graphite-line)}
+.analyst-system-hub li p,.process-harness p,.home-engineering p,.engineering-keywords{color:var(--graphite-muted)}
+.runtime-map{background:radial-gradient(ellipse at 50% 42%,#292e39 0%,transparent 62%),radial-gradient(circle,#454b58 1px,transparent 1.3px) 0 0/18px 18px,#121419}
+.runtime-map-boundary{background:#20232a;border-color:#626c80;color:var(--graphite-muted)}
+.runtime-wire{stroke:#8b96a9}
+#runtime-arrow path{stroke:#8b96a9}
+#runtime-arrow-active path{stroke:var(--signal-bright)}
+.process-active-route{stroke:var(--signal-bright);filter:drop-shadow(0 0 4px #82a0ff77)}
+.process-route-pulse{fill:#f4f7ff;stroke:#3b64dd}
+.runtime-map-labels{fill:var(--graphite-muted);stroke:#20232a}
+.runtime-map-labels .is-active{fill:var(--signal-light)}
+.runtime-node{background:linear-gradient(145deg,#292d36,#1b1e25);border-color:var(--graphite-line);color:var(--paper);box-shadow:0 6px 15px #080b1270}
+.runtime-node-harness{background:linear-gradient(135deg,#2b354e,#222733);border-color:#8095c3}
+.runtime-node-copy,.runtime-map-key{color:var(--graphite-muted)}
+.runtime-node-mark{background:#191e29;border-color:#687899;color:#d6e0f8}
+.runtime-node.is-active{border-color:var(--signal-bright);box-shadow:0 0 0 2px #91adff36,0 8px 24px #070a1180}
+.runtime-node.is-active .runtime-node-mark{background:var(--signal-light);color:#19294d;border-color:var(--signal-light)}
+.process-handoff{background:var(--blue-soft);color:#203157}
+.process-trace-step,.process-pager-button{background:var(--paper);color:var(--ink);border-color:#cbd1dc}
+.process-trace-step:hover:not([aria-pressed="true"]),.process-pager-button:hover:not(:disabled){background:var(--blue-soft);color:#203157;border-color:#859bdd}
+.process-trace-step[aria-pressed="true"]{background:var(--dark);color:var(--paper);border-color:var(--dark)}
+.process-trace-detail{border-left-color:var(--blue)}
+.handoff-beat-controls button{background:var(--graphite-panel);color:var(--paper);border-color:var(--graphite-line)}
+.handoff-beat-controls button[aria-pressed="true"],.handoff-lab .handoff-play{background:var(--lime);color:#182747;border-color:var(--lime)}
+.handoff-payload{background:var(--graphite-panel);border-color:var(--graphite-line);box-shadow:0 6px 18px #080b1275}
+.handoff-payload dl div{border-color:var(--graphite-line)}
+.handoff-payload dt{color:var(--signal-light)}
+.handoff-caption p{color:var(--paper)}
+.site-menu summary:focus-visible,.engineering-chapter summary:focus-visible,.visitor-detail summary:focus-visible,.process-trace-step:focus-visible,.process-pager-button:focus-visible,.handoff-play:focus-visible{outline-color:var(--blue)}

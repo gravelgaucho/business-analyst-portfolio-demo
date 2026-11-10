@@ -61,6 +61,48 @@ function productScene(){
   };
   ["Data Explorer","Analyst Brief"].forEach((label,index)=>{const item=button(label,()=>show(index),"scene-tab");buttons.push(item);tabs.append(item);});main.append(tabs,body);shell.append(rail,main);section.append(shell);show(0);return section;
 }
+function analystSystemDiagram(){
+  const section=element("section",undefined,"home-section analyst-system");
+  section.append(sectionHead("How the Analyst Works","Ask a business question. The analyst checks the connected records, runs the calculations, and shows what supports its answer."));
+  const figure=element("figure",undefined,"analyst-system-figure");
+  const question=element("div",undefined,"analyst-system-question");
+  question.append(element("span","A QUESTION FROM SALES LEADERSHIP","architecture-label"),element("p","“Why did East close more annual contract value than West?”"));
+  const flow=element("div",undefined,"analyst-system-flow");
+  const column=(label,title,items,className="")=>{
+    const node=element("div",undefined,"analyst-system-node "+className);
+    node.append(element("span",label,"architecture-label"),element("h3",title));
+    const list=element("ul");
+    items.forEach(([name,description])=>{
+      const item=element("li");item.append(element("strong",name),element("p",description));list.append(item);
+    });
+    node.append(list);return node;
+  };
+  const arrow=()=>{const node=element("span",undefined,"analyst-system-arrow");node.setAttribute("aria-hidden","true");return node;};
+  flow.append(
+    column("01 / INPUTS","What It Connects",[
+      ["Business records","Accounts, opportunities, support tickets, product issues, and a separate finance sample."],
+      ["Documents and search","Retrieve relevant passages from approved documents, with their source locations."],
+      ["Business definitions","Agree what terms such as annual contract value mean and which records are in scope."]
+    ]),
+    arrow(),
+    column("02 / COORDINATION","The Analyst Harness",[
+      ["Local language model","Interprets the question, requests tools, and drafts an explanation. The model can be replaced."],
+      ["Analysis tools","SQL and Python calculate totals, compare groups, and break down what drove a difference."],
+      ["Scope, history, and evidence","The harness checks tool requests, carries forward accepted context, and saves the evidence for review."]
+    ],"analyst-system-hub"),
+    arrow(),
+    column("03 / RESULTS","What You Get Back",[
+      ["An answer for the decision","A finding with numbers, caveats, and a suggested next check or action."],
+      ["Charts and records","Explore breakdowns and inspect the underlying records in the workspace."],
+      ["An audit trail","Open sources and calculations to see how the result was produced. Missing evidence stays visible."]
+    ])
+  );
+  const example=element("figcaption",undefined,"analyst-system-example");
+  example.append(element("span","FROM THE PREPARED REGIONAL CASE","architecture-label"),element("p","East led by $43.7M in closed-won annual contract value. Deal count accounted for about 93% of the gap in the comparison. That tells us what drove the arithmetic, but not why East won more deals."),button("Follow the full investigation ↗",()=>navigate("case"),"text-button"));
+  figure.append(question,flow,example);
+  section.append(figure,element("p","The public portfolio uses prepared examples and synthetic data. The separate Mac prototype runs the model and tools locally.","note"),button("Inspect the engineering ↗",()=>navigate("engineering"),"text-button"));
+  return section;
+}
 function renderOverview(){
   app.replaceChildren();
   const hero=element("section",undefined,"hero home-hero");
@@ -70,9 +112,7 @@ function renderOverview(){
   const introduction=element("section",undefined,"product-introduction");
   const identity=element("div");identity.append(element("span","THE PROJECT","architecture-label"),element("h2","What This Is"),element("p","A model-agnostic AI business analyst prototype: a workspace for exploring company data and investigating business questions. Its architecture brings approved records, document search, exact calculations, and language-model reasoning together."),element("p","The goal is a useful management answer: what happened, why the evidence supports it, and what to do next, with sources and methods you can inspect. Built locally on a Mac, with a model layer designed to be replaced as better options arrive."),button("How The Engine Works ↗",()=>navigate("how"),"text-button"));
   const problem=element("div");problem.append(element("span","THE BUSINESS NEED","architecture-label"),element("h2","The Problem We’re Solving"),element("p","“Bookings are up, but revenue is flat. Why?” Answering that can mean connecting sales records, financial reports, contracts, and customer histories. Teams must reconcile definitions, check the calculations, and distinguish a plausible explanation from a supported finding."),element("p","Even a capable model needs the right company context, access rules, and analytical tools. Some businesses also need sensitive data to stay within their own environment. This project explores how to bring those pieces into a reviewable investigation."),button("Why This Needs An Engine ↗",()=>navigate("why"),"text-button"));
-  introduction.append(identity,problem);app.append(introduction,productScene());
-  const foundation=element("section",undefined,"home-section foundation-section");foundation.append(sectionHead("Company Context. Calculations. Checkable Answers.","The model interprets the question. The tools do the calculations. The evidence lets you check the conclusion."));
-  const pillars=element("div",undefined,"foundation-pillars");[["01","Connect the Context","Bring structured records and relevant documents together under shared business definitions."],["02","Do the Analytical Work","Calculate changes, compare groups, and search relevant documents."],["03","Make the Answer Checkable","Trace material findings to sources, methods, assumptions, and the limits of the evidence."]].forEach(([num,title,copy])=>{const item=element("section");item.append(element("span",num,"pillar-number"),element("h3",title),element("p",copy));pillars.append(item);});foundation.append(pillars,button("See How It Works ↗",()=>navigate("how"),"text-button"));app.append(foundation);
+  introduction.append(identity,problem);app.append(introduction,analystSystemDiagram(),productScene());
   const workflows=element("section",undefined,"home-section workflow-section");workflows.dataset.purpose="workflow-comparison";workflows.append(sectionHead("Two Ways to Investigate","Start with the data and choose your own path, or start with a business question and follow the analytical sequence."),workflowCards());app.append(workflows);
   app.append(manualSourceSection());
   const engineering=element("section",undefined,"home-section home-engineering");const engineeringCopy=element("div");engineeringCopy.append(element("span","APPLIED AI ENGINEERING","architecture-label"),element("h2","Follow the work all the way down."),element("p","Inspect how the engine connects models, data, tools, and evidence. Follow the design decisions, working components, and tests still to pass."),button("Explore the Engineering ↗",()=>navigate("engineering"),"btn"));const skills=element("div",undefined,"engineering-keywords");["Agent Harness","Context Engineering","SQL + Python","Retrieval / RAG","Evidence Lineage","Evaluation Gates"].forEach(label=>skills.append(element("span",sentenceText(label))));engineering.append(engineeringCopy,skills);app.append(engineering);
@@ -148,6 +188,205 @@ function renderWorkflows(){
   pageNext("Watch four investigations unfold","about","The videos illustrate support, contract comparison, sales performance, and product priorities.");
 }
 
+function processSchematic(){
+  const section=element("section",undefined,"process-schematic");
+  section.append(sectionHead("Process Architecture","Follow one investigation through the local runtime. The harness coordinates the loop; the model selects tools, and code executes them."));
+  const map=element("div",undefined,"process-map");
+  const node=(className,label,title,copy)=>{
+    const card=element("section",undefined,"process-node "+className);
+    card.append(element("span",label,"architecture-label"),element("h3",title),element("p",copy));return card;
+  };
+  const edge=(className,label)=>element("div",label,"process-edge "+className);
+  map.append(
+    node("process-input","01 / WORKSPACE","Question + Approved Scope","A new question or follow-up, with the admitted records and any selected chart scope."),
+    edge("process-admission","↓  Admit scope and restore accepted history"),
+    node("process-harness","02 / PYDANTIC AI + HOST CONTROLS","Agent Harness","Assemble the request, enforce scope and budgets, and decide whether to continue, pause for approval, or stop."),
+    edge("process-model-edge","↕  Request / tool call or draft"),
+    node("process-model","03 / INFERENCE","Replaceable Local Model","An OpenAI-compatible adapter sends messages and tool schemas to the local MLX-VLM runtime."),
+    edge("process-tool-edge","↕  Validated call / evidence result"),
+    node("process-tools","04 / EXECUTION","Typed Analytical Tools","SQL and Python calculate results; document retrieval returns passages and source locations. Tool results go back to the harness for the next model request."),
+    edge("process-source-edge","↕  Read approved sources"),
+    node("process-sources","DATA BOUNDARY","Sources + Definitions","Pinned records and documents, shared metric definitions, exact filter values, and selected-record limits."),
+    edge("process-save","↓  Save attempts, evidence, and review state"),
+    node("process-evidence","05 / PERSISTENCE","Session Store + Evidence Records","SQLite retains attempts and accepted history. Versioned evidence records retain sources, arguments, and results for replay. Accepted history feeds the next turn."),
+    edge("process-review-edge","↓  Present draft with supporting evidence"),
+    node("process-review","06 / HUMAN REVIEW","Answer + Evidence for Review","Read the finding and its limits, inspect charts or source records, and review the calculations. Accept or reject the draft, or ask a follow-up.")
+  );
+  const canvas=element("div",undefined,"process-canvas");
+  canvas.tabIndex=0;canvas.setAttribute("role","region");canvas.setAttribute("aria-label","Process flowchart; scroll horizontally on narrow screens");
+  const drawing=element("div",undefined,"process-drawing runtime-map");
+  const svg=(tag,attrs={})=>{const node=document.createElementNS("http://www.w3.org/2000/svg",tag);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));return node;};
+  // Routes and their endpoints share the same coordinate space as the component cards.
+  const links={
+    submit:["M234 258H380",["workspace","harness"],"Question + scope",307,244],
+    context:["M466 218V142",["harness","model"],"Context + schemas",456,177,"end"],
+    proposal:["M594 142V218",["model","harness"],"Tool call / draft",604,177,"start"],
+    dispatch:["M466 338V435",["harness","tools"],"Validated call",454,392,"end"],
+    result:["M594 435V338",["tools","harness"],"Evidence result",606,392,"start"],
+    read:["M380 485H234",["tools","sources"],"Scoped read",307,470],
+    records:["M234 507H380",["sources","tools"],"Source records",307,529],
+    draft:["M680 258H826",["harness","review"],"Draft + citations",753,244],
+    persist:["M680 311H716Q730 311 730 325V484Q730 498 744 498H826",["harness","ledger"],"Record attempt",778,482],
+    restore:["M826 521H715Q701 521 701 507V335H680",["ledger","harness"],"Restore history",764,541],
+    inspect:["M926 338V449",["review","ledger"],"Inspect evidence",938,394,"start"],
+    replay:["M900 449V338",["ledger","review"],"Replay result",888,394,"end"],
+    follow:["M826 297H780Q768 297 768 309V353Q768 366 755 366H307Q294 366 294 353V309Q294 297 281 297H234",["review","workspace"],"Follow-up",305,352,"start"]
+  };
+  const base=svg("svg",{viewBox:"0 0 1060 610",class:"runtime-map-wires","aria-hidden":"true"});
+  const defs=svg("defs");
+  [["runtime-arrow","#687a96"],["runtime-arrow-active","#83e0ca"]].forEach(([id,fill])=>{
+    const marker=svg("marker",{id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:6,markerHeight:6,orient:"auto"});
+    marker.append(svg("path",{d:"M1 1L9 5L1 9",fill:"none",stroke:fill,"stroke-width":1.7}));defs.append(marker);
+  });
+  base.append(defs);
+  const wireLabels=svg("g",{class:"runtime-map-labels"});
+  const nodes=new Map();
+  Object.entries(links).forEach(([id,[d,,label,x,y,anchor]])=>{
+    const wire=svg("path",{d,class:"runtime-wire "+(["inspect","replay","follow"].includes(id)?"runtime-wire-human":""),"marker-end":"url(#runtime-arrow)"});
+    base.append(wire);
+    const caption=svg("text",{x,y,"text-anchor":anchor||"middle","data-wire":id});caption.textContent=label;wireLabels.append(caption);
+  });
+  const highlight=svg("svg",{viewBox:"0 0 1060 610",class:"process-route-overlay"});
+  highlight.setAttribute("aria-hidden","true");
+  const labels=svg("svg",{viewBox:"0 0 1060 610",class:"runtime-label-layer","aria-hidden":"true"});labels.append(wireLabels);
+  drawing.append(element("div","LOCAL APPLICATION","runtime-map-boundary"),base,highlight,labels);
+  const components=[
+    ["workspace","01","Workspace","Question · chart selection",24,218,210,120],
+    ["model","AI","Local model","OpenAI-compatible API · MLX-VLM",380,35,300,107],
+    ["harness","∿","Agent harness","Pydantic AI · scope · context · approvals",380,218,300,120],
+    ["review","04","Human review","Draft · citations · decision",826,218,210,120],
+    ["sources","DB","Source catalog","Records · docs · definitions",24,449,210,106],
+    ["tools","ƒ","Analysis & retrieval","Typed contracts · SQL · Python · RAG",380,435,300,120],
+    ["ledger","EV","Evidence store","SQLite · provenance · replay",826,449,210,106]
+  ];
+  components.forEach(([id,glyph,title,copy,x,y,w,h])=>{
+    const card=element("div",undefined,"runtime-node runtime-node-"+id);
+    Object.assign(card.style,{left:x/10.6+"%",top:y/6.1+"%",width:w/10.6+"%",height:h/6.1+"%"});
+    card.append(element("span",glyph,"runtime-node-mark"),element("strong",title),element("span",copy,"runtime-node-copy"));
+    card.firstChild.setAttribute("aria-hidden","true");
+    nodes.set(id,card);drawing.append(card);
+  });
+  drawing.append(element("p","Active route lights up as you step through. Dashed lines mark a human action.","runtime-map-key"));
+  canvas.append(drawing);
+  const trace=element("section",undefined,"process-trace");
+  trace.append(element("span","LOCAL RUNTIME","architecture-label"),element("h3","Request Lifecycle"));
+  const controls=element("div",undefined,"process-trace-controls"), detail=element("div",undefined,"process-trace-detail");
+  const guide=element("div",undefined,"process-handoff");
+  const progress=element("span",undefined,"architecture-label");
+  const handoff=element("strong"), takeaway=element("p");
+  const pager=element("div",undefined,"process-pager");
+  const back=button("← Previous",()=>select(active-1),"process-pager-button");
+  const next=button("Next step →",()=>select(active+1),"process-pager-button");
+  pager.append(back,next);guide.append(progress,handoff,takeaway,pager);
+  guide.setAttribute("aria-live","polite");
+  controls.setAttribute("role","group");controls.setAttribute("aria-label","Investigation stages");
+  const stages=[
+    ["Scope","What goes into the run","The workspace sends the question and approved records. The harness restores accepted history and carries the same scope into tool execution."],
+    ["Model","What crosses the model boundary","The harness sends messages and typed tool definitions to the local model. A tool call is a proposal: the host validates it and can pause for approval when required."],
+    ["Tools","What comes back from the tools","Validated calls run calculations or retrieve documents within the approved scope. The model receives a compact evidence result; the full record retains the source, arguments, method, and result for replay."],
+    ["Review","How a draft is checked","The app checks that cited IDs resolve to evidence in the session. The human reviewer checks factual support and completeness before accepting or rejecting the draft."],
+    ["Follow-up","What carries into the next request","The harness restores accepted conversation history and review notes. A follow-up uses the existing approved scope; widening that scope requires a new approval."]
+  ];
+  const concepts=[
+    [["Semantic layer","The business vocabulary the tools share: metric meanings, units, and valid filters."],["Semantic tuning","Refine metric definitions, field mappings, and terminology in the application without changing model weights."]],
+    [["Context engineering","Assemble instructions, accepted history, tool schemas, and scoped evidence for the next request."],["Native tool calling","The model proposes a named tool and structured arguments; the host decides whether it can run."]],
+    [["Typed tool contracts","Pydantic schemas define valid arguments. The host enforces source scope, prerequisites, and execution limits."],["Deterministic analytics","SQL and Python calculate totals and comparisons from the admitted records."],["Retrieval-augmented generation (RAG)","Search approved documents and supply matching passages with source locations. The current retrieval is lexical."]],
+    [["Evidence provenance","A citation resolves to the recorded source, method, arguments, and result. Replay checks the record against the source and method."],["Human-in-the-loop review","The app checks citation IDs. A reviewer judges factual support and completeness, and decides whether to accept the draft."]],
+    [["Durable session state","Accepted turns and review notes carry forward through saved history; the model does not remember them on its own."],["Evaluation harness","Offline fixtures test tool calls, continuation, and replay. Live model quality is a separate qualification step."]]
+  ];
+  const walkthrough=[
+    ["Set the scope","Workspace → Harness","The question and the data it’s allowed to use travel together.",307,["submit"]],
+    ["Ask the model","Harness → Model → Harness","The model reads the context and proposes what to do. It doesn’t query the data itself.",530,["context","proposal"]],
+    ["Run the tools","Harness → Tools → Harness","Code does the calculation or search. The result goes back to the harness so the model can decide what to check next.",530,["dispatch","read","records","result"]],
+    ["Review the draft","Harness → Reviewer ↔ Evidence","The reviewer gets the answer and can inspect the evidence before accepting it.",835,["persist","draft","inspect","replay"]],
+    ["Continue the conversation","Reviewer → Workspace → Harness","The next question can reuse accepted history and evidence within the approved scope.",530,["follow","submit","restore"]]
+  ];
+  const steps=[];
+  let active=0, beatIndex=0, playback=null;
+  const drawRoute=(paths)=>{
+    highlight.replaceChildren();
+    const activeNodes=new Set(paths.flatMap(id=>links[id][1]));
+    nodes.forEach((card,id)=>card.classList.toggle("is-active",activeNodes.has(id)));
+    wireLabels.querySelectorAll("[data-wire]").forEach(label=>label.classList.toggle("is-active",paths.includes(label.getAttribute("data-wire"))));
+    const moving=!matchMedia("(prefers-reduced-motion: reduce)").matches;
+    paths.forEach((id,i)=>{
+      const [d]=links[id];
+      highlight.append(svg("path",{d,class:"process-active-route","marker-end":"url(#runtime-arrow-active)"}));
+      if(moving){
+        const pulse=svg("circle",{r:4.5,class:"process-route-pulse",opacity:0});
+        const motion=svg("animateMotion",{path:d,begin:"indefinite",dur:"0.66s",fill:"remove"});
+        const visible=svg("set",{attributeName:"opacity",to:1,begin:"indefinite",dur:"0.66s"});
+        pulse.append(motion,visible);highlight.append(pulse);
+        if(highlight.isConnected){motion.beginElementAt(i*0.68);visible.beginElementAt(i*0.68);}
+      }
+    });
+  };
+  const beats=[
+    ["Propose","MODEL → HARNESS","Tool request","The model names an available tool and supplies arguments. It hasn’t run anything yet.",[["Tool","analyze_business_records"],["Arguments","Collection, filters, and breakdown"]],["proposal"],530],
+    ["Check","HARNESS → ANALYSIS TOOL","Contract check","The harness checks the arguments and the approved scope. Only a valid, admitted request reaches the tool.",[["Check","Typed inputs and approved records"],["On success","Dispatch the calculation"]],["dispatch"],530],
+    ["Return","ANALYSIS TOOL → HARNESS","Evidence result","Code computes the breakdown. A compact result goes back into the model context, while the full record can be replayed.",[["Model receives","Result and evidence ID"],["Audit retains","Source, method, inputs, and result"]],["read","records","result"],530]
+  ];
+  const lab=element("section",undefined,"handoff-lab");
+  const labHeader=element("div",undefined,"handoff-lab-header"), beatControls=element("div",undefined,"handoff-beat-controls");
+  const beatCard=element("div",undefined,"handoff-beat-card");
+  beatCard.setAttribute("aria-live","polite");
+  const beatButtons=[];
+  const stop=()=>{if(playback!==null)clearTimeout(playback);playback=null;play.textContent="Play the handoff";};
+  const frame=(index)=>{
+    beatIndex=index;
+    const [,route,title,copy,fields,paths,center]=beats[index];
+    beatButtons.forEach((item,i)=>item.setAttribute("aria-pressed",String(i===index)));
+    const message=element("div",undefined,"handoff-payload");
+    message.append(element("span",route,"architecture-label"),element("strong",title));
+    const data=element("dl");
+    fields.forEach(([key,value])=>{const row=element("div");row.append(element("dt",key),element("dd",value));data.append(row);});
+    message.append(data);
+    const note=element("div",undefined,"handoff-caption");note.append(element("span","HANDOFF "+(index+1)+" / 3","architecture-label"),element("p",copy));
+    beatCard.replaceChildren(message,note);
+    drawRoute(paths);
+    canvas.scrollLeft=Math.max(0,center/1060*drawing.clientWidth-canvas.clientWidth/2);
+  };
+  const play=button("Play the handoff",()=>{
+    if(playback!==null){stop();return;}
+    play.textContent="Pause";
+    const advance=(index)=>{
+      frame(index);
+      playback=setTimeout(()=>{
+        if(!lab.isConnected || active!==2 || index===beats.length-1){stop();return;}
+        advance(index+1);
+      },2300);
+    };
+    advance(beatIndex===beats.length-1?0:beatIndex);
+  },"handoff-play");
+  beats.forEach(([label],i)=>{const item=button((i+1)+" · "+label,()=>{stop();frame(i);},"process-trace-step");beatButtons.push(item);beatControls.append(item);});
+  beatControls.setAttribute("role","group");beatControls.setAttribute("aria-label","Tool handoff stages");
+  const labTitle=element("div");labTitle.append(element("span","INTERACTIVE TECHNICAL EXPLAINER","architecture-label"),element("h4","What Actually Moves Between Components?"));
+  labHeader.append(labTitle,play);lab.append(labHeader,beatControls,beatCard);
+  const select=(index)=>{
+    if(index<0 || index>=stages.length)return;
+    stop();active=index;
+    steps.forEach((step,i)=>step.setAttribute("aria-pressed",String(i===index)));
+    const [,route,plain,center,paths]=walkthrough[index];
+    progress.textContent="STEP "+(index+1)+" OF "+stages.length;
+    handoff.textContent=route;takeaway.textContent=plain;
+    back.disabled=index===0;next.disabled=index===stages.length-1;
+    lab.hidden=index!==2;
+    if(index===2)frame(0);
+    else{drawRoute(paths);canvas.scrollLeft=Math.max(0,center/1060*drawing.clientWidth-canvas.clientWidth/2);}
+    const [,title,copy]=stages[index];
+    const terms=element("dl",undefined,"process-terms");
+    concepts[index].forEach(([term,meaning])=>{const entry=element("div");entry.append(element("dt",term),element("dd",meaning));terms.append(entry);});
+    detail.replaceChildren(element("span","UNDER THE HOOD","architecture-label"),element("strong",title),element("p",copy),terms);
+  };
+  walkthrough.forEach(([name],i)=>{const step=button((i+1)+" · "+name,()=>select(i),"process-trace-step");steps.push(step);controls.append(step);});
+  const workflow=element("div",undefined,"process-workflow-frame");
+  workflow.append(canvas,lab);
+  trace.append(element("p","Follow the request one handoff at a time. Use Next or jump to any step; the highlighted route shows where to look.","process-trace-guide"),controls,guide,workflow,detail);
+  select(0);
+  section.append(trace,deeper("Read the Process Step by Step",map),element("p","This diagram documents the local analyst runtime. It does not execute requests.","note"));
+  return section;
+}
+
 function renderEngineering(){
   app.replaceChildren(heading("ENGINEERING DEEP DIVE","The system behind the answer.","A modular local prototype spanning model serving, an agent harness, context engineering, verified data, business semantics, deterministic analytics, retrieval, and evidence lineage. Later experimental components remain local; the linked public repository contains published milestones."));
   const contribution=element("section",undefined,"contribution-band");
@@ -158,7 +397,7 @@ function renderEngineering(){
   const principles=element("details",undefined,"technical-notes");principles.append(element("summary","Core Design Principles"));
   const choices=element("div",undefined,"story-rows");
   [["01","Control where analysis happens","Sensitive sales pipelines, customer histories, and commercial terms may need to stay inside a company’s environment. Local inference gives a deployment choice; production identity and access controls still require implementation."],["02","Keep the intelligence replaceable","Models improve faster than business definitions change. Separate the model adapter from analytical tools and evidence contracts so a new candidate can be tested against the same work. Portability still has to be demonstrated."],["03","Make useful answers testable","A fluent answer is only part of the result. Check the figures, scope, requested parts, and source references; retain attempts so failures can be traced to data, tools, orchestration, or the model."]].forEach(([num,title,copy])=>{const row=element("section",undefined,"story-row");row.append(element("span",num,"story-number"),element("h3",title),element("p",copy));choices.append(row);});principles.append(choices);
-  const pipeline=element("ol",undefined,"system-pipeline");[["INTERFACE","Question + conversation"],["MODEL","Provider adapter"],["EXECUTION","Governed tools"],["EVIDENCE","Ledger + source replay"],["REVIEW","Answer + audit"]].forEach(([label,copy])=>{const item=element("li");item.append(element("span",label,"architecture-label"),element("strong",copy));pipeline.append(item);});app.append(pipeline);
+  app.append(processSchematic());
   const componentCatalog=element("details",undefined,"technical-notes component-catalog");componentCatalog.append(element("summary","Component Catalog and Technical Notes"));
   componentCatalog.append(sectionHead("Under the hood","Working components, explicit boundaries, and repeatable checks. This is where the portfolio demonstrates the engineering behind the interface."));
   const architecture=element("div",undefined,"architecture-grid");

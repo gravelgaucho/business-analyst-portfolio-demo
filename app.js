@@ -32,7 +32,7 @@ const panel = (title,copy) => {const box=element("section",undefined,"panel");bo
 const sourceHref = "https://github.com/devrev/enterprise-bench/tree/";
 const views={overview:[renderOverview,"Product Overview"],why:[renderWhy,"Why It Exists"],how:[renderHow,"How It Works"],workflows:[renderWorkflows,"Sample Workflows"],explore:[renderExplore,"Data Workspace"],investigation:[renderInvestigation,"Visual Support Workflow"],case:[renderCase,"End-to-End Case Sample"],about:[renderAbout,"Demo Videos"],engineering:[renderEngineering,"Engineering Deep Dive"],possibilities:[renderPossibilities,"Business Applications"],scale:[renderScale,"Enterprise Scale"],roadmap:[renderRoadmap,"Roadmap and Implementation"]};
 
-function closeNavigation(){document.querySelectorAll(".site-menu[open]").forEach(menu=>menu.open=false);document.querySelector(".site-header").classList.remove("menu-open");document.querySelector("#menu-toggle").setAttribute("aria-expanded","false");}
+function closeNavigation(){document.querySelectorAll(".site-menu[open]").forEach(menu=>menu.open=false);}
 function workflowContext(kind){const box=element("div",undefined,"workflow-context");box.append(button("← Two sample workflows",()=>navigate("workflows")),element("span",kind==="visual"?"Visual path · follow the data and inspect the records":"Conversational path · an annotated sequence of questions and findings"));app.prepend(box);}
 
 async function records(category) {
@@ -231,10 +231,9 @@ function renderAbout(){
 }
 
 document.querySelectorAll("[data-view]").forEach(item=>item.addEventListener("click",event=>{event.preventDefault();navigate(item.dataset.view);}));
-document.querySelector("#menu-toggle").addEventListener("click",()=>{const header=document.querySelector(".site-header");const open=header.classList.toggle("menu-open");document.querySelector("#menu-toggle").setAttribute("aria-expanded",String(open));});
 document.querySelectorAll(".site-menu").forEach(menu=>menu.addEventListener("toggle",()=>{if(menu.open)document.querySelectorAll(".site-menu").forEach(other=>{if(other!==menu)other.open=false;});}));
 document.addEventListener("click",event=>{if(!event.target.closest(".site-menu"))document.querySelectorAll(".site-menu").forEach(menu=>menu.open=false);});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){const open=document.querySelector(".site-header").classList.contains("menu-open");closeNavigation();if(open)document.querySelector("#menu-toggle").focus();}});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!event.defaultPrevented&&!dialog.open){const summary=document.querySelector(".site-menu[open] summary");if(summary){closeNavigation();summary.focus();}}});
 window.addEventListener("hashchange",()=>{const view=location.hash.slice(1);if(Object.hasOwn(views,view)&&view!==currentView)navigate(view);});
 document.querySelector("#dialog-close").addEventListener("click",()=>dialog.close());
 dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
