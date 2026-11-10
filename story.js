@@ -213,7 +213,7 @@ function processSchematic(){
     node("process-review","06 / HUMAN REVIEW","Answer + Evidence for Review","Read the finding and its limits, inspect charts or source records, and review the calculations. Accept or reject the draft, or ask a follow-up.")
   );
   const canvas=element("div",undefined,"process-canvas");
-  canvas.tabIndex=0;canvas.setAttribute("role","region");canvas.setAttribute("aria-label","Process flowchart; scroll horizontally on narrow screens");
+  canvas.setAttribute("role","region");canvas.setAttribute("aria-label","Process flowchart");
   const drawing=element("div",undefined,"process-drawing runtime-map");
   const svg=(tag,attrs={})=>{const node=document.createElementNS("http://www.w3.org/2000/svg",tag);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));return node;};
   // Routes and their endpoints share the same coordinate space as the component cards.
@@ -334,7 +334,7 @@ function processSchematic(){
   const stop=()=>{if(playback!==null)clearTimeout(playback);playback=null;play.textContent="Play the handoff";};
   const frame=(index)=>{
     beatIndex=index;
-    const [,route,title,copy,fields,paths,center]=beats[index];
+    const [,route,title,copy,fields,paths]=beats[index];
     beatButtons.forEach((item,i)=>item.setAttribute("aria-pressed",String(i===index)));
     const message=element("div",undefined,"handoff-payload");
     message.append(element("span",route,"architecture-label"),element("strong",title));
@@ -344,7 +344,6 @@ function processSchematic(){
     const note=element("div",undefined,"handoff-caption");note.append(element("span","HANDOFF "+(index+1)+" / 3","architecture-label"),element("p",copy));
     beatCard.replaceChildren(message,note);
     drawRoute(paths);
-    canvas.scrollLeft=Math.max(0,center/1060*drawing.clientWidth-canvas.clientWidth/2);
   };
   const play=button("Play the handoff",()=>{
     if(playback!==null){stop();return;}
@@ -366,13 +365,13 @@ function processSchematic(){
     if(index<0 || index>=stages.length)return;
     stop();active=index;
     steps.forEach((step,i)=>step.setAttribute("aria-pressed",String(i===index)));
-    const [,route,plain,center,paths]=walkthrough[index];
+    const [,route,plain,,paths]=walkthrough[index];
     progress.textContent="STEP "+(index+1)+" OF "+stages.length;
     handoff.textContent=route;takeaway.textContent=plain;
     back.disabled=index===0;next.disabled=index===stages.length-1;
     lab.hidden=index!==2;
     if(index===2)frame(0);
-    else{drawRoute(paths);canvas.scrollLeft=Math.max(0,center/1060*drawing.clientWidth-canvas.clientWidth/2);}
+    else drawRoute(paths);
     const [,title,copy]=stages[index];
     const terms=element("dl",undefined,"process-terms");
     concepts[index].forEach(([term,meaning])=>{const entry=element("div");entry.append(element("dt",term),element("dd",meaning));terms.append(entry);});
@@ -380,7 +379,7 @@ function processSchematic(){
   };
   walkthrough.forEach(([name],i)=>{const step=button((i+1)+" · "+name,()=>select(i),"process-trace-step");steps.push(step);controls.append(step);});
   const workflow=element("div",undefined,"process-workflow-frame");
-  workflow.append(canvas,lab);
+  workflow.append(canvas,element("p","Rotate your phone for a larger diagram.","process-rotate-hint"),lab);
   trace.append(element("p","Follow the request one handoff at a time. Use Next or jump to any step; the highlighted route shows where to look.","process-trace-guide"),controls,guide,workflow,detail);
   select(0);
   section.append(trace,deeper("Read the Process Step by Step",map),element("p","This diagram documents the local analyst runtime. It does not execute requests.","note"));

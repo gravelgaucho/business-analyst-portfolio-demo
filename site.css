@@ -111,7 +111,8 @@
 .analyst-system-example{border-top:1px solid var(--line)}
 .process-map{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,1fr);gap:8px 18px;margin:24px 0 12px;padding:clamp(12px,3vw,30px);border:1px solid var(--line);border-radius:18px;background:rgba(113,110,180,.05)}
 .process-canvas{margin:24px 0 14px;overflow-x:auto;border:1px solid var(--line);border-radius:18px}
-.process-drawing{position:relative;min-width:790px}
+.process-drawing{position:relative}
+.process-rotate-hint{display:none}
 .process-route-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
 .process-active-route{fill:none;stroke:#83e0ca;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px #77d7c17a)}
 .process-route-pulse{fill:#ebfff9;stroke:#399e88;stroke-width:1.4}
@@ -140,10 +141,20 @@
 @media(max-width:620px){.process-handoff{grid-template-columns:1fr}.process-pager{grid-column:1;grid-row:auto;margin-top:6px}}
 .process-trace{padding:clamp(14px,2vw,22px);margin:20px 0 18px;border:1px solid var(--line);border-radius:16px}
 .process-trace .process-canvas{margin:14px 0}
-.process-workflow-frame{margin:14px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.process-workflow-frame{container-type:inline-size;margin:14px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
 .process-trace .process-workflow-frame .process-canvas{margin:0;border:0;border-radius:0}
 .process-workflow-frame .process-canvas:focus-visible{outline-offset:-4px}
 .process-workflow-frame .handoff-lab{margin:0;border-radius:0;border-top:1px solid var(--graphite-line,#656780)}
+@container (width < 790px){
+  .runtime-map-boundary{top:1.5cqw;padding:.5cqw .85cqw;border-radius:.5cqw;font-size:.95cqw}
+  .runtime-node{gap:.47cqw;padding:.75cqw 1.05cqw;border-radius:.95cqw}
+  .runtime-node strong,.runtime-node-sources strong,.runtime-node-ledger strong{font-size:1.8cqw}
+  .runtime-node-copy{font-size:1.12cqw}
+  .runtime-node-mark{width:2.45cqw;height:2.17cqw;border-radius:.47cqw;font-size:1.04cqw}
+  .runtime-map-key{font-size:1.04cqw}
+  .process-rotate-hint{display:block;margin:0;padding:8px 12px;color:var(--muted);font-size:12px}
+}
+@media(orientation:landscape){.process-workflow-frame .process-rotate-hint{display:none}}
 .process-trace-guide{font-size:14px;margin:0 0 14px}
 .handoff-lab{background:#252637;color:#f6f5ff;padding:clamp(14px,3vw,24px);border-radius:14px;margin:14px 0}
 .handoff-lab[hidden]{display:none}
