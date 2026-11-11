@@ -1,0 +1,41 @@
+{
+  "disclosure": "AI-generated narration",
+  "films": {
+    "support": {
+      "title": "Support Review",
+      "passages": [
+        "Where should the support team focus? The analyst brings the incident history into one view. Reporting has the largest share, but Invoicing is close behind. Priority and status add context to the raw counts.",
+        "The follow-up tests whether this is a repeat problem. The cases span almost two years, and two subjects describe similar dashboard slowness. That is a useful lead to investigate, rather than a confirmed diagnosis.",
+        "Now open a source. The original ticket, its recorded date, priority, and status remain visible alongside the answer. The calculation is just as accessible: fifty-eight reporting incidents divided by two hundred and sixty-nine total incidents.",
+        "The result is a focused handoff. Review symptoms and closure quality, connect confirmed product issues, and measure recurrence after an approved fix. The conversation has moved from a broad question to an owner, an investigation, and a way to assess the outcome."
+      ]
+    },
+    "contracts": {
+      "title": "Agreement Comparison",
+      "passages": [
+        "Two contracts can look similar and create very different operating commitments. Here, the analyst matches nine terms across Growth and Enterprise, then makes the service-level differences visible side by side.",
+        "The follow-up moves beyond response time. Maintenance notice, billing disputes, API availability, and latency all affect how teams work. Scrolling through the comparison reveals the details that a headline summary could miss.",
+        "Every comparison needs its source. Section three point two confirms the response targets. The credit clauses show why context matters: the caps differ, but so do the conditions that make those remedies available.",
+        "The output becomes a practical review checklist. Legal verifies executed terms. The service owner maps obligations to controls. Any mismatch is assessed against the applicable conditions before a decision is made. The value is in connecting the wording to the work it requires."
+      ]
+    },
+    "regions": {
+      "title": "Regional Sales Review",
+      "passages": [
+        "East leads West by forty-three point seven million dollars in won annual contract value. Should West copy East's approach? Start with the numbers, then test the interpretation before making that decision.",
+        "The first follow-up separates deal count from deal size. About ninety-three percent of the gap comes from East having more won deals. Average deal value explains only a small part. That describes the difference; it does not yet explain the cause.",
+        "The next question changes the reading. East has more indexed accounts, while West is slightly ahead on won value per account. The account mixes differ, so the headline totals are not a fair measure of team effectiveness.",
+        "The recommendation is to hold the rollout and build a matched comparison. Sales operations checks opportunity supply, conversion, and account potential. A targeted pilot follows only if the evidence supports it. Better follow-up questions lead to a more defensible decision."
+      ]
+    },
+    "issues": {
+      "title": "Product Priorities",
+      "passages": [
+        "A large backlog can make everything feel urgent. The analyst starts by separating historical priority from active work. Of thirteen hundred and sixty high-priority issues, twenty are marked in progress in this snapshot.",
+        "The follow-up asks what those twenty actually represent. They include bugs, tasks, and stories. Product areas with large historical totals can have no active records, so count alone is not a useful ranking of business risk.",
+        "Open a Checkout issue to inspect the source. The title, date, priority, and status are visible, along with the other matching records. The analyst keeps the distinction between selecting a record for review and proving its business impact.",
+        "The final handoff asks product to confirm affected customers, link incidents, and compare impact with effort. Approved fixes can then be assessed against a baseline. The tool turns a broad prioritization question into a reviewable queue and a practical next step."
+      ]
+    }
+  }
+}

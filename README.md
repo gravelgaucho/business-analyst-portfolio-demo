@@ -13,6 +13,24 @@ the pinned synthetic Maple Payments snapshot and follow two precomputed, source-
 workflows. The [engine repository](https://github.com/gravelgaucho/ai-business-operations-analyst)
 continues separately.
 
+## November 10 Presentation Update
+
+The landing page follows a connected five-stage investigation, with scroll-linked
+chapter highlights, direct demo and video entry points, and a clearer transition
+from exploring records to asking questions. Shared typography, navigation, and
+responsive layouts use the deep-blue, white, and yellow presentation system.
+Repeated overview explanations have been consolidated into their dedicated pages.
+
+Four 86-second, native-1440p conversation videos now include generated narration,
+selectable English captions, deeper evidence inspection, and decision handoffs.
+The gallery uses standard browser playback controls. The source-data explanation
+lives in the Engineering component catalog, rather than in repeated page badges.
+
+Release checks cover public field allowlists, source-backed calculations, all four
+media files, caption assets, repository-relative paths, and JavaScript syntax.
+Desktop and mobile checks cover the revised landing sequence and both entry buttons.
+This release changes the public presentation; it does not deploy the local engine.
+
 ## What Works
 
 - The October 19 harness narrative introduces the investigation loop on How It Works
@@ -109,7 +127,7 @@ continues separately.
   The full East/West case has its own
   page, linked from the Overview's management-question card. A four-item video playlist
   shows one player at a time, pauses hidden players, and links to workflows or source indexes.
-  Expandable text findings accompany the videos. No model generated these videos.
+  Expandable text findings accompany the videos. Analytical scenes are rendered from verified examples, with generated narration and selectable English captions.
 
 The current renderer is `make_conversation_walkthrough.py`, with the original
 slide renderer retained in Git history and as a source-fact verifier. The public

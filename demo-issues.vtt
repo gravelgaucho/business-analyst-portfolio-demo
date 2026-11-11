@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.856 --> 00:00:03.491
+A large backlog can make
+everything feel urgent.
+
+2
+00:00:04.227 --> 00:00:08.013
+The analyst starts by separating
+historical priority from active work.
+
+3
+00:00:08.365 --> 00:00:11.128
+Of thirteen hundred and
+sixty high-priority issues,
+
+4
+00:00:11.651 --> 00:00:14.115
+twenty are marked in
+progress in this snapshot.
+
+5
+00:00:22.220 --> 00:00:25.092
+The follow-up asks what those
+twenty actually represent.
+
+6
+00:00:25.505 --> 00:00:28.012
+They include bugs, tasks, and stories.
+
+7
+00:00:28.662 --> 00:00:32.449
+Product areas with large historical
+totals can have no active records,
+
+8
+00:00:32.716 --> 00:00:35.588
+so count alone is not a useful
+ranking of business risk.
+
+9
+00:00:43.720 --> 00:00:45.976
+Open a Checkout issue to inspect the source.
+
+10
+00:00:46.451 --> 00:00:48.531
+The title, date, priority,
+
+11
+00:00:48.755 --> 00:00:51.944
+and status are visible, along
+with the other matching records.
+
+12
+00:00:52.595 --> 00:00:55.514
+The analyst keeps the distinction
+between selecting a record for
+
+13
+00:00:55.539 --> 00:00:57.619
+review and proving its business impact.
+
+14
+00:01:05.220 --> 00:01:08.452
+The final handoff asks product
+to confirm affected customers,
+
+15
+00:01:08.804 --> 00:01:11.353
+link incidents, and compare
+impact with effort.
+
+16
+00:01:11.938 --> 00:01:14.914
+Approved fixes can then be
+assessed against a baseline.
+
+17
+00:01:15.352 --> 00:01:17.773
+The tool turns a broad prioritization question
+
+18
+00:01:17.912 --> 00:01:20.674
+into a reviewable queue
+and a practical next step.

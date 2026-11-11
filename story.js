@@ -15,12 +15,12 @@ function workflowCards(){const cards=element("div",undefined,"workflow-grid");[
 function openCollection(category){explore={category,query:"",facet:"",value:"",account:"",page:0};navigate("explore");}
 function manualSourceSection(){
   const section=element("section",undefined,"home-section manual-source-section");section.dataset.purpose="manual-exploration";
-  const intro=element("div",undefined,"manual-intro");intro.append(element("span","THE DATA WORKSPACE","architecture-label"),element("h2","Explore Without Asking the AI"),element("p","Compare opportunity values, support demand, and product-issue counts in interactive charts. Select a bar to inspect its records, or browse any of the seven synthetic collections."),button("Open the Data Workspace ↗",()=>navigate("explore"),"btn primary"));
+  const intro=element("div",undefined,"manual-intro");intro.append(element("span","THE DATA WORKSPACE","architecture-label"),element("h2","Explore Without Asking the AI"),element("p","Compare opportunity values, support demand, and product-issue counts in interactive charts. Select a bar to inspect its records, or browse any of the seven collections."),button("Open the Data Workspace ↗",()=>navigate("explore"),"btn primary"));
   const collections=element("div",undefined,"source-gallery");Object.entries(categoryInfo).forEach(([key,info])=>{const item=button("",()=>openCollection(key),"source-tile");item.append(element("span",info.label,"source-name"),element("strong",number(summary.totals[key])),element("span","Browse ↗","source-action"));collections.append(item);});section.append(intro,collections);return section;
 }
 function productScene(){
   const section=element("section",undefined,"product-scene");section.dataset.purpose="product-preview";
-  const top=element("div",undefined,"scene-top");top.append(element("span","INSIDE THE WORKSPACE","architecture-label"),element("span","Interactive preview · Synthetic snapshot","scene-snapshot"));section.append(top);
+  const top=element("div",undefined,"scene-top");top.append(element("span","INSIDE THE WORKSPACE","architecture-label"),element("span","Interactive preview","scene-snapshot"));section.append(top);
   const shell=element("div",undefined,"scene-shell"),rail=element("aside",undefined,"scene-rail"),main=element("div",undefined,"scene-main");
   rail.append(element("strong","Business Analyst"),element("span","Workspace","scene-rail-label"));[["Accounts","accounts"],["Opportunities","opportunities"],["Support Tickets","tickets"],["Product Issues","issues"]].forEach(([label,key])=>rail.append(button(label,()=>key==="tickets"?show(0):loadCollection(key),"scene-collection")));rail.append(element("p","Selections stay in this preview. Labeled links open the full pages."));
   const tabs=element("div",undefined,"scene-tabs");tabs.setAttribute("role","group");tabs.setAttribute("aria-label","Choose a workspace preview");const body=element("div",undefined,"scene-body"),buttons=[];let previewCycle=0;
@@ -61,62 +61,12 @@ function productScene(){
   };
   ["Data Explorer","Analyst Brief"].forEach((label,index)=>{const item=button(label,()=>show(index),"scene-tab");buttons.push(item);tabs.append(item);});main.append(tabs,body);shell.append(rail,main);section.append(shell);show(0);return section;
 }
-function analystSystemDiagram(){
-  const section=element("section",undefined,"home-section analyst-system");
-  section.append(sectionHead("How the Analyst Works","Ask a business question. The analyst checks the connected records, runs the calculations, and shows what supports its answer."));
-  const figure=element("figure",undefined,"analyst-system-figure");
-  const question=element("div",undefined,"analyst-system-question");
-  question.append(element("span","A QUESTION FROM SALES LEADERSHIP","architecture-label"),element("p","“Why did East close more annual contract value than West?”"));
-  const flow=element("div",undefined,"analyst-system-flow");
-  const column=(label,title,items,className="")=>{
-    const node=element("div",undefined,"analyst-system-node "+className);
-    node.append(element("span",label,"architecture-label"),element("h3",title));
-    const list=element("ul");
-    items.forEach(([name,description])=>{
-      const item=element("li");item.append(element("strong",name),element("p",description));list.append(item);
-    });
-    node.append(list);return node;
-  };
-  const arrow=()=>{const node=element("span",undefined,"analyst-system-arrow");node.setAttribute("aria-hidden","true");return node;};
-  flow.append(
-    column("01 / INPUTS","What It Connects",[
-      ["Business records","Accounts, opportunities, support tickets, product issues, and a separate finance sample."],
-      ["Documents and search","Retrieve relevant passages from approved documents, with their source locations."],
-      ["Business definitions","Agree what terms such as annual contract value mean and which records are in scope."]
-    ]),
-    arrow(),
-    column("02 / COORDINATION","The Analyst Harness",[
-      ["Local language model","Interprets the question, requests tools, and drafts an explanation. The model can be replaced."],
-      ["Analysis tools","SQL and Python calculate totals, compare groups, and break down what drove a difference."],
-      ["Scope, history, and evidence","The harness checks tool requests, carries forward accepted context, and saves the evidence for review."]
-    ],"analyst-system-hub"),
-    arrow(),
-    column("03 / RESULTS","What You Get Back",[
-      ["An answer for the decision","A finding with numbers, caveats, and a suggested next check or action."],
-      ["Charts and records","Explore breakdowns and inspect the underlying records in the workspace."],
-      ["An audit trail","Open sources and calculations to see how the result was produced. Missing evidence stays visible."]
-    ])
-  );
-  const example=element("figcaption",undefined,"analyst-system-example");
-  example.append(element("span","FROM THE PREPARED REGIONAL CASE","architecture-label"),element("p","East led by $43.7M in closed-won annual contract value. Deal count accounted for about 93% of the gap in the comparison. That tells us what drove the arithmetic, but not why East won more deals."),button("Follow the full investigation ↗",()=>navigate("case"),"text-button"));
-  figure.append(question,flow,example);
-  section.append(figure,element("p","The public portfolio uses prepared examples and synthetic data. The separate Mac prototype runs the model and tools locally.","note"),button("Inspect the engineering ↗",()=>navigate("engineering"),"text-button"));
-  return section;
-}
 function renderOverview(){
   app.replaceChildren();
-  const hero=element("section",undefined,"hero home-hero");
-  const left=heading("MODEL-AGNOSTIC · LOCAL-FIRST","Ask a business question. Follow the evidence.","A locally run AI analyst for leaders, analysts, and operations teams. Bring company data, business definitions, and analytical tools together. Inspect the answer. Replace the model as better options arrive.");
-  const actions=element("div",undefined,"actions");actions.append(button("Explore the Demo ↗",()=>navigate("workflows"),"btn primary"),button("Watch the analyst demos",()=>navigate("about")));left.append(actions,element("p","Interactive portfolio demo · Synthetic data · No live model call","demo-expectation"),element("p","Built by Julio Campos · Applied AI engineering, business analysis, and product design.","maker-line"));
-  const aside=element("aside",undefined,"hero-aside");aside.append(element("div","A QUESTION WORTH INVESTIGATING","eyebrow"),element("strong","Should West copy East’s sales approach?"),element("p","East leads by $43.715M in annual contract value from won opportunities. West leads by 1.7% per indexed account. Follow the questions that change the decision."),button("See the end-to-end case ↗",()=>navigate("case"),"btn"));hero.append(left,aside);app.append(hero);
-  const introduction=element("section",undefined,"product-introduction");
-  const identity=element("div");identity.append(element("span","THE PROJECT","architecture-label"),element("h2","What This Is"),element("p","A model-agnostic AI business analyst prototype: a workspace for exploring company data and investigating business questions. Its architecture brings approved records, document search, exact calculations, and language-model reasoning together."),element("p","The goal is a useful management answer: what happened, why the evidence supports it, and what to do next, with sources and methods you can inspect. Built locally on a Mac, with a model layer designed to be replaced as better options arrive."),button("How The Engine Works ↗",()=>navigate("how"),"text-button"));
-  const problem=element("div");problem.append(element("span","THE BUSINESS NEED","architecture-label"),element("h2","The Problem We’re Solving"),element("p","“Bookings are up, but revenue is flat. Why?” Answering that can mean connecting sales records, financial reports, contracts, and customer histories. Teams must reconcile definitions, check the calculations, and distinguish a plausible explanation from a supported finding."),element("p","Even a capable model needs the right company context, access rules, and analytical tools. Some businesses also need sensitive data to stay within their own environment. This project explores how to bring those pieces into a reviewable investigation."),button("Why This Needs An Engine ↗",()=>navigate("why"),"text-button"));
-  introduction.append(identity,problem);app.append(introduction,analystSystemDiagram(),productScene());
+  app.append(landingIntro());
+  const workspacePreview=element("details",undefined,"home-workspace-disclosure");workspacePreview.append(element("summary","Try the workspace here: browse records and a prepared brief"),productScene(),manualSourceSection());app.append(workspacePreview);
   const workflows=element("section",undefined,"home-section workflow-section");workflows.dataset.purpose="workflow-comparison";workflows.append(sectionHead("Two Ways to Investigate","Start with the data and choose your own path, or start with a business question and follow the analytical sequence."),workflowCards());app.append(workflows);
-  app.append(manualSourceSection());
-  const engineering=element("section",undefined,"home-section home-engineering");const engineeringCopy=element("div");engineeringCopy.append(element("span","APPLIED AI ENGINEERING","architecture-label"),element("h2","Follow the work all the way down."),element("p","Inspect how the engine connects models, data, tools, and evidence. Follow the design decisions, working components, and tests still to pass."),button("Explore the Engineering ↗",()=>navigate("engineering"),"btn"));const skills=element("div",undefined,"engineering-keywords");["Agent Harness","Context Engineering","SQL + Python","Retrieval / RAG","Evidence Lineage","Evaluation Gates"].forEach(label=>skills.append(element("span",sentenceText(label))));engineering.append(engineeringCopy,skills);app.append(engineering);
-  const status=element("details",undefined,"technical-notes home-status");status.append(element("summary","Project Status: What Is Built, Demonstrated, and Next"));const cards=element("div",undefined,"status-grid");[["BUILT LOCALLY","A dedicated analyst application, local model integration, CRM and product analytics, saved investigations, and inspectable evidence."],["SHOWN HERE","Interactive charts and source records, two verified sample workflows, and four prepared conversation videos using synthetic data."],["STILL TO QUALIFY","Reliable open-ended conversations, new-company transfer, and production deployment. Model experimentation is paused."]].forEach(([label,copy])=>{const card=element("div",undefined,"status-card");card.append(element("span",label,"architecture-label"),element("p",copy));cards.append(card);});status.append(cards,element("p","The charts and filters run in your browser without an LLM. The example investigations are precomputed and source-backed; new questions run only in the separate local application.","note"));app.append(status);
+  const status=element("details",undefined,"technical-notes home-status");status.append(element("summary","Project Status: What Is Built, Demonstrated, and Next"));const cards=element("div",undefined,"status-grid");[["BUILT LOCALLY","A dedicated analyst application, local model integration, CRM and product analytics, saved investigations, and inspectable evidence."],["SHOWN HERE","Interactive charts and source records, two verified sample workflows, and four prepared conversation videos."],["STILL TO QUALIFY","Reliable open-ended conversations, new-company transfer, and production deployment. Model experimentation is paused."]].forEach(([label,copy])=>{const card=element("div",undefined,"status-card");card.append(element("span",label,"architecture-label"),element("p",copy));cards.append(card);});status.append(cards);app.append(status);
   pageNext("Why build an engine around a model?","why","The business problem is bigger than generating a fluent answer.");
 }
 
@@ -131,7 +81,7 @@ function renderWhy(){
   app.append(sectionHead("Who It Is For","For teams that need to understand what happened and decide what to do next."));
   const people=element("div",undefined,"foundation-pillars");
   [["Business Leaders","Frame the question, review the finding, and choose the next action."],["Analysts And Operators","Explore records, compare explanations, and inspect the calculations."],["Data And AI Teams","Scrutinize source access, tool contracts, orchestration, and evaluation."]].forEach(([title,copy])=>people.append(panel(title,copy)));app.append(people);
-  app.append(panel("Keep Control Of Your Data And Model","Some companies need sensitive records to stay inside their environment. This prototype runs locally on a Mac. Its modular design leaves room for a company-managed server or approved hosted model, subject to testing."));
+  app.append(panel("Keep Control Of Your Data And Model","Some companies need sensitive records to stay inside their environment. Built locally, designed to evolve. Its modular design leaves room for a company-managed server or approved hosted model, subject to testing."));
   app.append(deeper("Why A Model Needs An Engine",
     element("p","A model can interpret a question and reason about evidence. The application connects approved sources, supplies business definitions, runs calculations, and records how the answer was produced."),
     element("p","Model replacements must pass the same tool and answer checks. A new deployment also needs appropriate permissions, security, and operational controls."),
@@ -177,7 +127,7 @@ function renderHow(){
 
 function renderWorkflows(){
   app.replaceChildren(heading("TWO SAMPLE WORKFLOWS","Start with records. Or start with a question.","Browse an account and follow the records, or follow a business question through successive answers. Both paths show the evidence and the next decision."));
-  app.append(element("p","Interactive Records · Prepared Investigations · Synthetic Data · No Live AI Chat","demo-expectation"));
+  app.append(element("p","Interactive Records · Prepared Investigations","demo-expectation"));
   app.append(workflowCards());
 
   const table=element("div",undefined,"comparison-matrix");
@@ -387,7 +337,7 @@ function processSchematic(){
 }
 
 function renderEngineering(){
-  app.replaceChildren(heading("ENGINEERING DEEP DIVE","The system behind the answer.","A modular local prototype spanning model serving, an agent harness, context engineering, verified data, business semantics, deterministic analytics, retrieval, and evidence lineage. Later experimental components remain local; the linked public repository contains published milestones."));
+  app.replaceChildren(heading("ENGINEERING DEEP DIVE","The system behind the answers.","A modular local prototype spanning model serving, an agent harness, context engineering, verified data, business semantics, deterministic analytics, retrieval, and evidence lineage. Later experimental components remain local; the linked public repository contains published milestones."));
   const contribution=element("section",undefined,"contribution-band");
   contribution.append(element("span","BUILT BY JULIO CAMPOS · FROM BUSINESS PROBLEM TO WORKING PROTOTYPE","architecture-label"),element("h2","The design choices behind the experience."),element("p","I translated the business need into a modular system: model serving, data engineering, semantic modeling, agent orchestration, evaluation, and a usable workspace. Language interpretation and tool selection belong with the model; exact calculations with code; source verification with an inspectable evidence layer."));
   const skills=element("div",undefined,"skill-strip");["Local inference","Agent harness","Context engineering","Typed tool contracts","SQL + Python analytics","Retrieval / RAG","Evidence lineage","Evaluation harness","Dashboard + UX"].forEach(label=>skills.append(element("span",sentenceText(label))));contribution.append(skills);
@@ -399,6 +349,7 @@ function renderEngineering(){
   app.append(processSchematic());
   const componentCatalog=element("details",undefined,"technical-notes component-catalog");componentCatalog.append(element("summary","Component Catalog and Technical Notes"));
   componentCatalog.append(sectionHead("Under the hood","Working components, explicit boundaries, and repeatable checks. This is where the portfolio demonstrates the engineering behind the interface."));
+  componentCatalog.append(panel("Data used for this portfolio","The workspace and demonstrations use synthetic business data from DevRev Enterprise-Bench / Maple Payments. Seven published source indexes cover accounts, opportunities, support tickets, product issues, articles, documents, and call transcripts. The snapshot is pinned by commit and verified against a checksum manifest. It represents a fictional company, not confidential company records or measured business results."));
   const architecture=element("div",undefined,"architecture-grid");
   [
     ["01 / MODEL BOUNDARY","Keep the intelligence replaceable","A provider adapter connects the engine to local inference. The current baseline runs on Apple Silicon with MLX-VLM. Each replacement must pass transport, tool-calling, and answer-quality checks."],
@@ -531,20 +482,19 @@ function renderRoadmap(){
 
   app.append(deeper("Portability: Models, Hardware, And Business Functions",portabilityHead,portability));
   const tuning=element("details",undefined,"technical-notes tuning-note");tuning.append(element("summary","Where fine-tuning could fit"),element("p","After selecting and qualifying a baseline, fine-tuning could improve question interpretation, tool selection, or answer style using separately permitted training examples. Retrieval and source connections supply current business facts. Held-out evaluations must show a benefit over the untuned baseline; Enterprise-Bench evaluation data must stay out of training. No fine-tuned model is claimed here."));app.append(tuning);
-  const qualification=element("div",undefined,"qualification-note");qualification.append(element("span","CURRENT CHECKPOINT","architecture-label"),element("strong","A working foundation, with a clear qualification gap."),element("p","The local 27B baseline has passed selected tool and evidence tests. Reliable general business conversations have not been qualified, and model experimentation is paused. A stronger model or larger machine may help; neither guarantees the missing behavior. The public demo remains a synthetic, read-only preview, with consequential conclusions subject to human review."));app.append(qualification);
+  const qualification=element("div",undefined,"qualification-note");qualification.append(element("span","CURRENT CHECKPOINT","architecture-label"),element("strong","A working foundation, with a clear qualification gap."),element("p","The local 27B baseline has passed selected tool and evidence tests. Reliable general business conversations have not been qualified, and model experimentation is paused. A stronger model or larger machine may help; neither guarantees the missing behavior. The public demo remains a read-only preview, with consequential conclusions subject to human review."));app.append(qualification);
 
-  app.append(sectionHead("Where we can go from here","Separate useful product work from model-dependent qualification."));
-  app.append(storyRows([["While model development is paused","Retain the verified harness checkpoint: compact evidence, optional account-directory discovery, stable request assembly, token accounting, and inspectable attempts. The dedicated app has passed focused offline checks. Further engine changes need a demonstrated gap; history compaction and streaming remain future options. Actual cache reuse, speed, and answer-quality gains await separate qualification."],["When a candidate is worth testing","Qualify native transport and known answer cases first. Then test tool execution, follow-ups, corrections, compound requests, and missing evidence. Review the business usefulness of the result before connecting live asking."],["After a useful company pilot","Test a second company with the shared core frozen and independent expected answers. Build refresh, production permissions, and recovery for the selected environment. Forecasting, optimization, and new domains each need reviewed methods."],["For broader credibility","Pursue the official Enterprise-Bench protocol when ready. Keep published benchmark results separate from known synthetic checks, private experiments, and company-transfer evidence."]]));
+  app.append(deeper("Independent benchmark qualification",element("p","Pursue the official Enterprise-Bench protocol when the engine is ready. Keep published benchmark results separate from known sample checks, private experiments, and company-transfer evidence.")));
   const closing=panel("Why this is a portfolio project","The work connects business problem framing with data engineering, local inference, agent design, deterministic analysis, provenance, evaluation, and product UX. The strongest demonstration is a useful answer whose figures and limitations remain inspectable.");
   closing.append(storyLink("Explore the published engine milestones ↗","https://github.com/gravelgaucho/ai-business-operations-analyst"));app.append(closing);
   pageNext("Return to the two workflows","workflows","See the business experience that these engineering choices are intended to support.");
 }
 
 function appendDataCoverage(){
-  const coverage=element("details",undefined,"technical-notes data-coverage");coverage.append(element("summary","What is connected? Seven synthetic source indexes"));
+  const coverage=element("details",undefined,"technical-notes data-coverage");coverage.append(element("summary","What is connected? Seven source indexes"));
   const content=element("div");
   const metrics=element("div",undefined,"metric-grid");
-  [["accounts","Accounts"],["opportunities","Opportunities"],["tickets","Support tickets"],["issues","Product issues"]].forEach(([key,label])=>{const card=element("div",undefined,"metric-card");card.append(element("span",sentenceText(label)),element("strong",number(summary.totals[key])),element("small","Verified synthetic source index"));metrics.append(card);});content.append(metrics);
+  [["accounts","Accounts"],["opportunities","Opportunities"],["tickets","Support tickets"],["issues","Product issues"]].forEach(([key,label])=>{const card=element("div",undefined,"metric-card");card.append(element("span",sentenceText(label)),element("strong",number(summary.totals[key])),element("small","Verified source index"));metrics.append(card);});content.append(metrics);
   const categories=element("div",undefined,"category-grid overview-collections");
   Object.entries(categoryInfo).forEach(([key,info])=>{const card=button("",()=>{explore={category:key,query:"",facet:"",value:"",account:"",page:0};navigate("explore");},"category-card");card.append(element("span",number(summary.totals[key]),"count"),element("span",info.label,"label"),element("span","Open collection ↗","arrow"));categories.append(card);});content.append(categories);
   content.append(element("p","This public snapshot omits document bodies, contact details, saved model runs, and the separate finance test data. Source coverage is broader than the analyst’s qualified analytical capabilities.","note"));

@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.856 --> 00:00:02.702
+Where should the support team focus?
+
+2
+00:00:02.989 --> 00:00:05.758
+The analyst brings the incident
+history into one view.
+
+3
+00:00:06.189 --> 00:00:09.507
+Reporting has the largest share,
+but Invoicing is close behind.
+
+4
+00:00:10.157 --> 00:00:13.133
+Priority and status add
+context to the raw counts.
+
+5
+00:00:22.220 --> 00:00:24.938
+The follow-up tests whether
+this is a repeat problem.
+
+6
+00:00:25.164 --> 00:00:27.073
+The cases span almost two years,
+
+7
+00:00:27.340 --> 00:00:30.487
+and two subjects describe
+similar dashboard slowness.
+
+8
+00:00:31.052 --> 00:00:32.949
+That is a useful lead to investigate,
+
+9
+00:00:33.057 --> 00:00:34.839
+rather than a confirmed diagnosis.
+
+10
+00:00:43.720 --> 00:00:44.643
+Now open a source.
+
+11
+00:00:45.092 --> 00:00:48.281
+The original ticket, its
+recorded date, priority,
+
+12
+00:00:48.463 --> 00:00:51.012
+and status remain visible
+alongside the answer.
+
+13
+00:00:51.791 --> 00:00:55.264
+The calculation is just as
+accessible: fifty-eight reporting
+
+14
+00:00:55.289 --> 00:00:58.650
+incidents divided by two hundred
+and sixty-nine total incidents.
+
+15
+00:01:05.220 --> 00:01:07.044
+The result is a focused handoff.
+
+16
+00:01:07.482 --> 00:01:11.482
+Review symptoms and closure quality,
+connect confirmed product issues,
+
+17
+00:01:11.834 --> 00:01:14.212
+and measure recurrence after an approved fix.
+
+18
+00:01:14.804 --> 00:01:17.932
+The conversation has moved from
+a broad question to an owner,
+
+19
+00:01:18.132 --> 00:01:20.980
+an investigation, and a
+way to assess the outcome.
