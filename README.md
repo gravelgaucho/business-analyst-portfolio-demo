@@ -13,6 +13,14 @@ the pinned synthetic Maple Payments snapshot and follow two precomputed, source-
 workflows. The [engine repository](https://github.com/gravelgaucho/ai-business-operations-analyst)
 continues separately.
 
+## November 11 Video Pacing Update
+
+The four narrated investigations now run 63–66 seconds, with approximately 2.5
+seconds between spoken sections instead of 6–10 seconds. The complete narration,
+findings, source inspection, and decision handoffs remain at their original speed.
+Caption timing follows the same cuts. Native 1440p resolution, 24 fps, and standard
+playback and scrubbing controls are retained. This is a presentation-only update.
+
 ## November 10 Presentation Update
 
 The landing page follows a connected five-stage investigation, with scroll-linked

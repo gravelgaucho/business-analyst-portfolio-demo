@@ -1,5 +1,4 @@
 {
-  "duration_seconds": 86,
   "conversations": {
     "support": [
       [
@@ -89,5 +88,11 @@
         "Proposed product-owner triage / impact data needed"
       ]
     ]
+  },
+  "durations_seconds": {
+    "support": 65.91666666666667,
+    "contracts": 64.16666666666667,
+    "regions": 63.458333333333336,
+    "issues": 66.25
   }
 }

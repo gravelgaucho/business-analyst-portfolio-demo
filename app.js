@@ -214,9 +214,9 @@ function renderAbout(){
     ["issues","04 · Product issue priorities","1,360 high-priority records become a scoped review of 20 active issues."]
   ].forEach(([key,title,description],index)=>{
     const card=element("section",undefined,"demo-card");card.id=`demo-${key}`;
-    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=26`;visual.setAttribute("aria-label",`${title}, 86-second analyst demonstration`);
-    const movie=element("source");movie.src=`./demo-${key}.mp4?v=26`;movie.type="video/mp4";
-    const captions=element("track");captions.kind="captions";captions.label="English";captions.srclang="en";captions.src=`./demo-${key}.vtt?v=25`;captions.default=true;
+    const visual=element("video");visual.className="tour-video";visual.controls=true;visual.playsInline=true;visual.preload="metadata";visual.poster=`./demo-${key}.png?v=26`;visual.setAttribute("aria-label",`${title}, analyst demonstration`);
+    const movie=element("source");movie.src=`./demo-${key}.mp4?v=27`;movie.type="video/mp4";
+    const captions=element("track");captions.kind="captions";captions.label="English";captions.srclang="en";captions.src=`./demo-${key}.vtt?v=27`;captions.default=true;
     visual.append(movie,captions,element("p","Your browser cannot play this demo. Read the conversation and sources below."));
     visual.addEventListener("play",()=>{if(card.hidden||currentView!=="about"){visual.pause();return;}demoVideos.forEach(other=>{if(other!==visual)other.pause();});});
     const transcript=element("details",undefined,"demo-transcript");transcript.append(element("summary","Read the finding and sources"));demoNotes[key].forEach(line=>transcript.append(element("p",line)));

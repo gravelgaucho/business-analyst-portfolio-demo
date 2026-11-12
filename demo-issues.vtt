@@ -21,66 +21,66 @@ twenty are marked in
 progress in this snapshot.
 
 5
-00:00:22.220 --> 00:00:25.092
+00:00:16.470 --> 00:00:19.342
 The follow-up asks what those
 twenty actually represent.
 
 6
-00:00:25.505 --> 00:00:28.012
+00:00:19.755 --> 00:00:22.262
 They include bugs, tasks, and stories.
 
 7
-00:00:28.662 --> 00:00:32.449
+00:00:22.912 --> 00:00:26.699
 Product areas with large historical
 totals can have no active records,
 
 8
-00:00:32.716 --> 00:00:35.588
+00:00:26.966 --> 00:00:29.838
 so count alone is not a useful
 ranking of business risk.
 
 9
-00:00:43.720 --> 00:00:45.976
+00:00:32.178 --> 00:00:34.435
 Open a Checkout issue to inspect the source.
 
 10
-00:00:46.451 --> 00:00:48.531
+00:00:34.909 --> 00:00:36.989
 The title, date, priority,
 
 11
-00:00:48.755 --> 00:00:51.944
+00:00:37.213 --> 00:00:40.402
 and status are visible, along
 with the other matching records.
 
 12
-00:00:52.595 --> 00:00:55.514
+00:00:41.053 --> 00:00:43.972
 The analyst keeps the distinction
 between selecting a record for
 
 13
-00:00:55.539 --> 00:00:57.619
+00:00:43.997 --> 00:00:46.077
 review and proving its business impact.
 
 14
-00:01:05.220 --> 00:01:08.452
+00:00:48.428 --> 00:00:51.660
 The final handoff asks product
 to confirm affected customers,
 
 15
-00:01:08.804 --> 00:01:11.353
+00:00:52.012 --> 00:00:54.561
 link incidents, and compare
 impact with effort.
 
 16
-00:01:11.938 --> 00:01:14.914
+00:00:55.146 --> 00:00:58.122
 Approved fixes can then be
 assessed against a baseline.
 
 17
-00:01:15.352 --> 00:01:17.773
+00:00:58.560 --> 00:01:00.981
 The tool turns a broad prioritization question
 
 18
-00:01:17.912 --> 00:01:20.674
+00:01:01.120 --> 00:01:03.882
 into a reviewable queue
 and a practical next step.
